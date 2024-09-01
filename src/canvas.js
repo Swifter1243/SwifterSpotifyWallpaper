@@ -1,7 +1,7 @@
-export const canvas = document.getElementById("canvas")
-export const context = canvas.getContext("2d")
+const canvas = document.getElementById("canvas")
+const context = canvas.getContext("2d")
 
-export function resizeCanvas() {
+function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     canvas.style.width = window.innerWidth + "px";
