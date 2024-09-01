@@ -1,3 +1,5 @@
+import * as test from './test.js'
+
 const canvas = document.getElementById("canvas")
 const context = canvas.getContext("2d")
 
@@ -24,5 +26,11 @@ function draw() {
     queueNextFrame()
 
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillText('balls', 300, 300)
+
+    context.font = '300px Minecraft'
+    context.textBaseline = 'top';
+    context.fillStyle = '#FFF'
+    context.fillText(test.yeah, 30, 30)
+
+    // context.fillRect(0, 0, 200, 200)
 }
