@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace SpotifyStatusGrabber
 {
-	public partial class Form1 : Form
+	public partial class SpotifyStatusGrabber : Form
 	{
 		private NotifyIcon notifyIcon;
 
-		public Form1()
+		public SpotifyStatusGrabber()
 		{
 			InitializeComponent();
 
@@ -33,27 +33,16 @@ namespace SpotifyStatusGrabber
 			contextMenu.Items.Add(exitMenuItem);
 			notifyIcon.ContextMenuStrip = contextMenu;
 
-			// Optional: Handle icon click event
-			notifyIcon.MouseClick += NotifyIcon_MouseClick;
-
 			// Hide the form from the taskbar
 			ShowInTaskbar = false; // Make sure the form doesn't show in the taskbar
-			Load += Form1_Load; // Handle the Load event
+			Load += Grabber_Load; // Handle the Load event
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
+		private void Grabber_Load(object sender, EventArgs e)
 		{
 			// Hide the form from the taskbar
 			ShowInTaskbar = false;
 			FormBorderStyle = FormBorderStyle.None; // Optional: Remove border (not necessary for taskbar)
-		}
-
-		private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Left)
-			{
-				MessageBox.Show("KYS!");
-			}
 		}
 
 		private void ExitMenuItem_Click(object sender, EventArgs e)

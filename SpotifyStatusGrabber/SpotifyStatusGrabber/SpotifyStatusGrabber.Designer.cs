@@ -1,6 +1,6 @@
 ﻿namespace SpotifyStatusGrabber
 {
-	partial class Form1
+	partial class SpotifyStatusGrabber
 	{
 		/// <summary>
 		/// Required designer variable.

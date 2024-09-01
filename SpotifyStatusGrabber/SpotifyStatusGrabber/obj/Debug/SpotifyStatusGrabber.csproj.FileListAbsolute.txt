@@ -2,9 +2,9 @@ E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatus
 E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\bin\Debug\SpotifyStatusGrabber.exe
 E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\bin\Debug\SpotifyStatusGrabber.pdb
 E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\obj\Debug\SpotifyStatusGrabber.csproj.AssemblyReference.cache
-E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\obj\Debug\SpotifyStatusGrabber.Form1.resources
 E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\obj\Debug\SpotifyStatusGrabber.Properties.Resources.resources
 E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\obj\Debug\SpotifyStatusGrabber.csproj.GenerateResource.cache
 E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\obj\Debug\SpotifyStatusGrabber.csproj.CoreCompileInputs.cache
 E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\obj\Debug\SpotifyStatusGrabber.exe
 E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\obj\Debug\SpotifyStatusGrabber.pdb
+E:\Users\Programs\Swifter's Spotify Wallpaper\SpotifyStatusGrabber\SpotifyStatusGrabber\obj\Debug\SpotifyStatusGrabber.SpotifyStatusGrabber.resources
