@@ -1,4 +1,4 @@
-window.onload = setup
+setup()
 
 function setup() {
     resizeCanvas()
