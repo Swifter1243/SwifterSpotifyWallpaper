@@ -21,21 +21,28 @@ namespace SpotifyStatusGrabber
 			// Minimize the main window.
 			WindowState = FormWindowState.Minimized;
 
+			// Hide the form from the taskbar
+			ShowInTaskbar = false; // Make sure the form doesn't show in the taskbar
+			Load += Grabber_Load; // Handle the Load event
+
 			// Initialize NotifyIcon
 			notifyIcon = new NotifyIcon();
 			notifyIcon.Icon = SystemIcons.Application; // Set an icon
 			notifyIcon.Visible = true; // Make the icon visible
 
 			// Optional: Add a context menu
-			ContextMenuStrip contextMenu = new ContextMenuStrip();
-			ToolStripMenuItem exitMenuItem = new ToolStripMenuItem("Exit");
-			exitMenuItem.Click += ExitMenuItem_Click;
-			contextMenu.Items.Add(exitMenuItem);
-			notifyIcon.ContextMenuStrip = contextMenu;
+			SetupContextMenu();
+		}
 
-			// Hide the form from the taskbar
-			ShowInTaskbar = false; // Make sure the form doesn't show in the taskbar
-			Load += Grabber_Load; // Handle the Load event
+		private void SetupContextMenu()
+		{
+			ContextMenuStrip contextMenu = new ContextMenuStrip();
+
+			ToolStripMenuItem exitMenuItem = new ToolStripMenuItem("Exit");
+			exitMenuItem.Click += (object sender, EventArgs e) => Application.Exit();
+			contextMenu.Items.Add(exitMenuItem);
+
+			notifyIcon.ContextMenuStrip = contextMenu;
 		}
 
 		private void Grabber_Load(object sender, EventArgs e)
@@ -43,11 +50,6 @@ namespace SpotifyStatusGrabber
 			// Hide the form from the taskbar
 			ShowInTaskbar = false;
 			FormBorderStyle = FormBorderStyle.None; // Optional: Remove border (not necessary for taskbar)
-		}
-
-		private void ExitMenuItem_Click(object sender, EventArgs e)
-		{
-			Application.Exit(); // Exit the application
 		}
 	}
 }
