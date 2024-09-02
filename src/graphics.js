@@ -86,7 +86,7 @@ function drawSpectrogramCurve(deltaTime) {
         lastAudio[i] = volume
 
         volume *= lastVolume
-        volume = Math.min(1, volume)
+        volume = softClip(volume, 0.2)
 
         const fraction = i / (AUDIO_LENGTH - 1)
         const x = lerp(getSpectrogramLeft(), getSpectrogramRight(), fraction)

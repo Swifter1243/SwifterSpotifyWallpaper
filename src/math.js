@@ -6,6 +6,14 @@ function lerpSmooth(value, target, deltaTime, rate) {
     return lerp(target, value, Math.exp(-rate * deltaTime))
 }
 
+function softClip(value, power) {
+    if (value > 1) {
+        return Math.pow(value, power)
+    } else {
+        return value
+    }
+}
+
 class Timer {
     lastTime
 
