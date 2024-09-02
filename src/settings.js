@@ -3,6 +3,8 @@ const settings = {
     spectrogramSpacingFromEdge: 50,
     spectrogramSpacingFromBottom: 50,
     spectrogramHeight: 300,
+    smoothingRate: 30,
+    audioNormalizationRate: 0.3,
 
     // Thumbnail
     thumbnailSize: 250,
@@ -18,8 +20,6 @@ const settings = {
     mediaTextDividerOffset: 0,
 
     // Display
-    audioNormalizationRate: 0.3,
-    smoothingRate: 30,
     fpsLimit: 60,
     debugEnabled: false
 }
