@@ -14,6 +14,14 @@ function getSpectrogramBottom() {
     return canvas.height - settings.spectrogramSpacingFromBottom
 }
 
+function getSpectrogramRect() {
+    const rectWidth = getSpectrogramRight() - getSpectrogramLeft()
+    const rectHeight = getSpectrogramBottom() - getSpectrogramTop()
+    return [
+        getSpectrogramLeft(), getSpectrogramTop(), rectWidth, rectHeight
+    ]
+} 
+
 function drawSpectrogram(deltaTime) {
     drawSpectrogramCurve(deltaTime)
 }
@@ -50,5 +58,26 @@ function drawSpectrogramCurve(deltaTime) {
         })
     }
 
+    const gradient = context.createRadialGradient(
+        0,
+        canvas.height * 0.5,
+        0,
+        0,
+        canvas.height * 0.5,
+        3000
+    )
+    gradient.addColorStop(0, '#000')
+    gradient.addColorStop(0.25, media.primaryColor)
+    gradient.addColorStop(0.5, media.secondaryColor)
+    gradient.addColorStop(0.75, media.tertiaryColor)
+
     drawBezierLine(points)
+
+    context.fillStyle = gradient
+    context.closePath();
+    context.fill()
+
+    context.lineWidth = 5
+    context.strokeStyle = '#FFF2'
+    context.stroke();
 }

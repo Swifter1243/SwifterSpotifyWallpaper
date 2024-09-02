@@ -40,27 +40,38 @@ function drawMedia() {
     const left = settings.thumbnailLeftMargin + thumbnailTotalSize + settings.mediaTextLeftMargin
     const middle = settings.thumbnailTopMargin + thumbnailTotalSize * 0.5 + settings.mediaTextDividerOffset
 
-    context.beginPath()
-    context.rect(
+    // Border
+    const borderRect = [
         settings.thumbnailLeftMargin, 
         settings.thumbnailTopMargin,
         thumbnailTotalSize,
         thumbnailTotalSize
-    )
-    context.fillStyle = "#FFF"
+    ]
+
+    context.beginPath()
+    context.rect(...borderRect)
+    const gradient = context.createLinearGradient(...borderRect)
+    gradient.addColorStop(0, media.primaryColor)
+    gradient.addColorStop(1, media.secondaryColor)
+    context.fillStyle = gradient
     context.fill()
 
+    // Title
+    context.fillStyle = media.secondaryColor
     context.font = `${settings.mediaTextTitleSize}px Minecraft`
     context.textBaseline = 'alphabetic'
     context.fillText(media.title, left, middle - settings.mediaTextDividerMargin)
 
+    // Artist
     context.font = `${settings.mediaTextArtistSize}px Minecraft`
     context.textBaseline = 'top'
     context.fillText(media.artist, left, middle + settings.mediaTextDividerMargin - 2)
 
+    // Separator
     context.beginPath()
     context.moveTo(left, middle)
     context.lineTo(canvas.width, middle)
+    context.strokeStyle = media.secondaryColor
     context.lineWidth = settings.mediaTextDividerWidth
     context.stroke()
 }

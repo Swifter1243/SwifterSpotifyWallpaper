@@ -21,10 +21,8 @@ function addDebugText(text) {
 }
 
 function drawSpectrogramBackgroundDebug() {
-    const rectWidth = getSpectrogramRight() - getSpectrogramLeft()
-    const rectHeight = getSpectrogramBottom() - getSpectrogramTop()
     context.beginPath()
-    context.rect(getSpectrogramLeft(), getSpectrogramTop(), rectWidth, rectHeight)
+    context.rect(...getSpectrogramRect())
     context.fillStyle = "#0003"
     context.fill()
 }

@@ -39,12 +39,4 @@ function drawBezierLine(points) {
 
     const lastPoint = points[points.length - 1];
     context.quadraticCurveTo(lastPoint.x, lastPoint.y, getSpectrogramRight(), getSpectrogramBottom());
-
-    context.closePath();
-    context.fillStyle = "#FFF";
-    context.fill();
-
-    context.lineWidth = 1
-    context.strokeStyle = "#FFF"
-    context.stroke();
 }
