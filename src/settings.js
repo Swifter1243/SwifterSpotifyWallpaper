@@ -1,19 +1,33 @@
 const settings = {
-    audioNormalizationRate: 0.3,
+    // Spectrogram
     spectrogramSpacingFromEdge: 50,
     spectrogramSpacingFromBottom: 50,
     spectrogramHeight: 300,
-    smoothingRate: 30,
+
+    // Thumbnail
     thumbnailSize: 250,
     thumbnailLeftMargin: 20,
     thumbnailTopMargin: 20,
+
+    // Media Text
+    mediaTextLeftMargin: 20,
+    mediaTextTitleSize: 48,
+    mediaTextArtistSize: 30,
+    mediaTextDividerWidth: 3,
+    mediaTextDividerMargin: 10,
+    mediaTextDividerOffset: 0,
+
+    // Display
+    audioNormalizationRate: 0.3,
+    smoothingRate: 30,
     fpsLimit: 60,
-    debugEnabled: true
+    debugEnabled: false
 }
 
 function applyProperties(properties) {
     applySpectrogramProperties(properties)
     applyThumbnailProperties(properties)
+    applyMediaTextProperties(properties)
     applyDisplayProperties(properties)
 }
 
@@ -41,6 +55,27 @@ function applyThumbnailProperties(properties) {
     if (properties.thumbnailtopmargin) {
         settings.thumbnailTopMargin = properties.thumbnailtopmargin.value
         updateThumbnailPosition()
+    }
+}
+
+function applyMediaTextProperties(properties) {
+    if (properties.mediatextleftmargin) {
+        settings.mediaTextLeftMargin = properties.mediatextleftmargin.value
+    }
+    if (properties.mediatexttitlesize) {
+        settings.mediaTextTitleSize = properties.mediatexttitlesize.value
+    }
+    if (properties.mediatextartistsize) {
+        settings.mediaTextArtistSize = properties.mediatextartistsize.value
+    }
+    if (properties.mediatextdividerwidth) {
+        settings.mediaTextDividerWidth = properties.mediatextdividerwidth.value
+    }
+    if (properties.mediatextdividermargin) {
+        settings.mediaTextDividerMargin = properties.mediatextdividermargin.value
+    }
+    if (properties.mediatextdivideroffset) {
+        settings.mediaTextDividerOffset = properties.mediatextdivideroffset.value
     }
 }
 

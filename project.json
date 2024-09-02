@@ -38,6 +38,80 @@
 				"type" : "slider",
 				"value" : 60
 			},
+			"mediatext" : 
+			{
+				"index" : 13,
+				"order" : 113,
+				"text" : "Media Text",
+				"type" : "group",
+				"value" : ""
+			},
+			"mediatextartistsize" : 
+			{
+				"fraction" : false,
+				"index" : 16,
+				"max" : 300,
+				"min" : 1,
+				"order" : 116,
+				"text" : "Artist Size",
+				"type" : "slider",
+				"value" : 30
+			},
+			"mediatextdividermargin" : 
+			{
+				"fraction" : false,
+				"index" : 18,
+				"max" : 1000,
+				"min" : 0,
+				"order" : 118,
+				"text" : "Divider Margin",
+				"type" : "slider",
+				"value" : 20
+			},
+			"mediatextdivideroffset" : 
+			{
+				"fraction" : false,
+				"index" : 19,
+				"max" : 500,
+				"min" : -500,
+				"order" : 119,
+				"text" : "Divider Offset",
+				"type" : "slider",
+				"value" : 4
+			},
+			"mediatextdividerwidth" : 
+			{
+				"fraction" : false,
+				"index" : 17,
+				"max" : 50,
+				"min" : 1,
+				"order" : 117,
+				"text" : "Divider Width",
+				"type" : "slider",
+				"value" : 5
+			},
+			"mediatextleftmargin" : 
+			{
+				"fraction" : false,
+				"index" : 14,
+				"max" : 2000,
+				"min" : 0,
+				"order" : 114,
+				"text" : "Left Margin",
+				"type" : "slider",
+				"value" : 20
+			},
+			"mediatexttitlesize" : 
+			{
+				"fraction" : false,
+				"index" : 15,
+				"max" : 300,
+				"min" : 1,
+				"order" : 115,
+				"text" : "Title Size",
+				"type" : "slider",
+				"value" : 62
+			},
 			"misc" : 
 			{
 				"index" : 8,
