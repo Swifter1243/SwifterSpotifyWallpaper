@@ -21,10 +21,18 @@ const media = {
 
 function initializeMediaThumbnail() {
     mediaThumbnail = document.getElementById('mediaThumbnail')
+    updateThumbnailSize()
+    updateThumbnailPosition()
+}
 
-    const size = canvas.height * settings.thumbnailSize
-    mediaThumbnail.width = size
-    mediaThumbnail.height = size
+function updateThumbnailSize() {
+    mediaThumbnail.width = settings.thumbnailSize
+    mediaThumbnail.height = settings.thumbnailSize
+}
+
+function updateThumbnailPosition() {
+    mediaThumbnail.style.left = `${settings.thumbnailLeftMargin}px`
+    mediaThumbnail.style.top = `${settings.thumbnailTopMargin}px`
 }
 
 function processMediaStatusListener(event) {

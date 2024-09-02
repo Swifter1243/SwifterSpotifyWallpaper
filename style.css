@@ -6,5 +6,5 @@ canvas {
 }
 
 #mediaThumbnail {
-    position: absolute;
+    position: fixed;
 }

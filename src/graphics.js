@@ -11,11 +11,11 @@ function getSpectrogramRight() {
 }
 
 function getSpectrogramTop() {
-    return settings.spectrogramBottomPosition - settings.spectrogramHeight
+    return getSpectrogramBottom() - settings.spectrogramHeight
 }
 
 function getSpectrogramBottom() {
-    return settings.spectrogramBottomPosition
+    return canvas.height - settings.spectrogramSpacingFromBottom
 }
 
 const graphicsDeltaTime = new Timer()
