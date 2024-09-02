@@ -2,21 +2,10 @@ function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawGraphics() {
-    context.font = '300px Minecraft'
-    context.textBaseline = 'top';
-    context.fillStyle = '#FFF'
-    context.fillText('real', 30, 30)
-}
-
 const AUDIO_LENGTH = 64
 
 const audioHorizontalMargin = 40
 const audioHeight = 1000
-
-function lerp(a, b, t) {
-    return (b - a) * t + a
-}
 
 function drawAudio(audioArray) {
     clear()
@@ -41,8 +30,6 @@ function drawAudio(audioArray) {
         })
     }
 
-    // drawGraphics()
-
     drawBezierLine(points)
 }
 
@@ -54,8 +41,6 @@ function drawBezierLine(points) {
 
     context.beginPath();
     context.moveTo(audioHorizontalMargin, canvas.height)
-
-    // context.lineTo(points[0].x, points[0].y);
 
     for (let i = 0; i < points.length - 1; i++) {
         const cp1 = points[i];
