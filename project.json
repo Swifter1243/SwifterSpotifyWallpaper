@@ -17,6 +17,14 @@
 				"type" : "slider",
 				"value" : 0.3
 			},
+			"debugenabled" : 
+			{
+				"index" : 6,
+				"order" : 106,
+				"text" : "Debug Enabled",
+				"type" : "bool",
+				"value" : false
+			},
 			"fpslimit" : 
 			{
 				"fraction" : true,

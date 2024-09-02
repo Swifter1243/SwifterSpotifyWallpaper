@@ -27,18 +27,38 @@ function draw() {
 
     drawSpectrogram(deltaTime)
 
-    context.font = "48px Minecraft"
-    context.fillText(`Delta Time: ${deltaTime}`, 300, 300)
-    context.fillText(`Approx FPS: ${1.0/deltaTime}`, 300, 400)
+    if (settings.debugEnabled) {
+        drawDebug(deltaTime)
+    }
 }
 
-function drawSpectrogram(deltaTime) {
-    drawSpectrogramBackground()
-    drawSpectrogramCurve(deltaTime)
+function drawDebug(deltaTime) {
+    startDebugText()
+    addDebugText(`Delta Time: ${deltaTime}`)
+    addDebugText(`Approx FPS: ${1.0/deltaTime}`)
+
+    drawSpectrogramBackgroundDebug()
     drawSpectrogramVolumeDebug()
 }
 
-function drawSpectrogramBackground() {
+const DEBUG_SPACING = 32
+let currentDebugTextPos = 0
+
+function startDebugText() {
+    currentDebugTextPos = 0
+    context.font = `${DEBUG_SPACING}px Arial`
+}
+
+function addDebugText(text) {
+    currentDebugTextPos += DEBUG_SPACING
+    context.fillText(text, 10, currentDebugTextPos)
+}
+
+function drawSpectrogram(deltaTime) {
+    drawSpectrogramCurve(deltaTime)
+}
+
+function drawSpectrogramBackgroundDebug() {
     const rectWidth = getSpectrogramRight() - getSpectrogramLeft()
     const rectHeight = getSpectrogramBottom() - getSpectrogramTop()
     context.beginPath()

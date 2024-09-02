@@ -4,7 +4,8 @@ let settings = {
     spectrogramBottomPosition: 1200,
     spectrogramHeight: 1000,
     smoothingRate: 30,
-    fpsLimit: 60
+    fpsLimit: 60,
+    debugEnabled: true
 }
 
 function applyProperties(properties) {
@@ -25,5 +26,8 @@ function applyProperties(properties) {
     }
     if (properties.audionormalizationrate) {
         settings.audioNormalizationRate = properties.audionormalizationrate.value
+    }
+    if (properties.debugenabled) {
+        settings.debugEnabled = properties.debugenabled.value
     }
 }
