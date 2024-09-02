@@ -4,6 +4,7 @@ const settings = {
     spectrogramBottomPosition: 1200,
     spectrogramHeight: 1000,
     smoothingRate: 30,
+    thumbnailSize: 0.2,
     fpsLimit: 60,
     debugEnabled: true
 }

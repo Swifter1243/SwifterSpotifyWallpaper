@@ -5,7 +5,9 @@ setup()
 
 function setup() {
     initializeContext()
+    initializeMediaThumbnail()
     attachAudioListener()
+    attachMediaListeners()
     attachPropertyListener()
     queueFrame()
 }
@@ -25,6 +27,14 @@ function attachPropertyListener() {
     window.wallpaperPropertyListener = {
         applyUserProperties: applyProperties
     }
+}
+
+function attachMediaListeners() {
+    window.wallpaperRegisterMediaStatusListener(processMediaStatusListener)
+    window.wallpaperRegisterMediaPropertiesListener(processMediaPropertiesListener)
+    window.wallpaperRegisterMediaThumbnailListener(processMediaThumbnailListener)
+    window.wallpaperRegisterMediaPlaybackListener(processMediaPlaybackListener)
+    window.wallpaperRegisterMediaTimelineListener(processMediaTimelineListener);
 }
 
 function queueFrame() {
