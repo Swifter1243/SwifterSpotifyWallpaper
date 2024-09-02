@@ -70,7 +70,7 @@ function drawMedia() {
     // Separator
     context.beginPath()
     context.moveTo(left, middle)
-    context.lineTo(canvas.width, middle)
+    context.lineTo(canvas.width - settings.mediaTextRightMargin, middle)
     context.strokeStyle = media.secondaryColor
     context.lineWidth = settings.mediaTextDividerWidth
     context.stroke()

@@ -16,6 +16,7 @@ const settings = {
     // Media Text
     mediaTextColor: '#FFF',
     mediaTextLeftMargin: 20,
+    mediaTextRightMargin: 20,
     mediaTextTitleSize: 48,
     mediaTextArtistSize: 30,
     mediaTextDividerWidth: 3,
@@ -75,6 +76,9 @@ function applyMediaTextProperties(properties) {
     }
     if (properties.mediatextleftmargin) {
         settings.mediaTextLeftMargin = properties.mediatextleftmargin.value
+    }
+    if (properties.mediatextrightmargin) {
+        settings.mediaTextRightMargin = properties.mediatextrightmargin.value
     }
     if (properties.mediatexttitlesize) {
         settings.mediaTextTitleSize = properties.mediatexttitlesize.value
