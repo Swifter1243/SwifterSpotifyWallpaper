@@ -4,16 +4,29 @@ function clear() {
 
 const AUDIO_LENGTH = 64
 
-const audioHorizontalMargin = 40
-const audioHeight = 1000
+function getSpectrogramLeft() {
+    return settings.spectrogramSpacingFromEdge
+}
+
+function getSpectrogramRight() {
+    return canvas.width - settings.spectrogramSpacingFromEdge
+}
+
+function getSpectrogramTop() {
+    return settings.spectrogramBottomPosition - settings.spectrogramHeight
+}
+
+function getSpectrogramBottom() {
+    return settings.spectrogramBottomPosition
+}
 
 function drawAudio(audioArray) {
     clear()
 
     const points = []
 
-    const leftPositionX = audioHorizontalMargin
-    const rightPositionX = canvas.width - audioHorizontalMargin
+    const leftPositionX = getSpectrogramLeft()
+    const rightPositionX = getSpectrogramRight()
 
     for (let i = 0; i < AUDIO_LENGTH; i++) {
         const left = audioArray[i]
@@ -22,7 +35,7 @@ function drawAudio(audioArray) {
 
         const fraction = i / (AUDIO_LENGTH - 1)
         const x = lerp(leftPositionX, rightPositionX, fraction)
-        const y = lerp(canvas.height, canvas.height - audioHeight, volume)
+        const y = lerp(getSpectrogramBottom(), getSpectrogramTop(), volume)
 
         points.push({
             x,
@@ -40,7 +53,7 @@ function drawBezierLine(points) {
     }
 
     context.beginPath();
-    context.moveTo(audioHorizontalMargin, canvas.height)
+    context.moveTo(getSpectrogramLeft(), getSpectrogramBottom())
 
     for (let i = 0; i < points.length - 1; i++) {
         const cp1 = points[i];
@@ -54,7 +67,7 @@ function drawBezierLine(points) {
     }
 
     const lastPoint = points[points.length - 1];
-    context.quadraticCurveTo(lastPoint.x, lastPoint.y, canvas.width - audioHorizontalMargin, canvas.height);
+    context.quadraticCurveTo(lastPoint.x, lastPoint.y, getSpectrogramRight(), getSpectrogramBottom());
 
     context.closePath();
     context.fillStyle = "#FFF";
