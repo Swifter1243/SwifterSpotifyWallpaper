@@ -29,6 +29,7 @@ function applyProperties(properties) {
     applySpectrogramProperties(properties)
     applyThumbnailProperties(properties)
     applyMediaTextProperties(properties)
+    applyBackgroundProperties(properties)
     applyDisplayProperties(properties)
 }
 
@@ -81,6 +82,13 @@ function applyMediaTextProperties(properties) {
     }
     if (properties.mediatextdivideroffset) {
         settings.mediaTextDividerOffset = properties.mediatextdivideroffset.value
+    }
+}
+
+function applyBackgroundProperties(properties) {
+    if (properties.backgroundimage) {
+        const imagePath = 'file:///' + properties.backgroundimage.value;
+        background.src = imagePath
     }
 }
 

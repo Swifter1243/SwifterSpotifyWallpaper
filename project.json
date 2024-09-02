@@ -17,6 +17,22 @@
 				"type" : "slider",
 				"value" : 0.3
 			},
+			"background" : 
+			{
+				"index" : 21,
+				"order" : 121,
+				"text" : "Background",
+				"type" : "group",
+				"value" : ""
+			},
+			"backgroundimage" : 
+			{
+				"index" : 22,
+				"order" : 122,
+				"text" : "Image",
+				"type" : "file",
+				"value" : ""
+			},
 			"debugenabled" : 
 			{
 				"index" : 13,
