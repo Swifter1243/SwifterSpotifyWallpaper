@@ -53,6 +53,9 @@ function drawSpectrogram(deltaTime) {
         }
         lastAudio[i] = volume
 
+        volume *= 0.6
+        volume = Math.min(1, volume)
+
         const fraction = i / (AUDIO_LENGTH - 1)
         const x = lerp(getSpectrogramLeft(), getSpectrogramRight(), fraction)
         const y = lerp(getSpectrogramBottom(), getSpectrogramTop(), volume)
