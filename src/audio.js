@@ -12,6 +12,6 @@ function processAudio(audioArray) {
         const volume = (left + right) / 2.0
         currentAudio[i] = volume
 
-        currentAverageVolume = Math.max(currentAverageVolume, Math.min(volume, 1))
+        currentAverageVolume = Math.max(currentAverageVolume, volume)
     }
 }
