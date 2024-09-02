@@ -25,19 +25,24 @@ function draw() {
 
     const deltaTime = graphicsDeltaTime.mark()
 
+    drawSpectrogram(deltaTime)
+
     context.font = "48px Minecraft"
     context.fillText(`Delta Time: ${deltaTime}`, 300, 300)
     context.fillText(`Approx FPS: ${1.0/deltaTime}`, 300, 400)
-
-    drawSpectrogram(deltaTime)
 }
 
 const lastAudio = []
 function drawSpectrogram(deltaTime) {
-    const points = []
+    const rectWidth = getSpectrogramRight() - getSpectrogramLeft()
+    const rectHeight = getSpectrogramBottom() - getSpectrogramTop()
 
-    const leftPositionX = getSpectrogramLeft()
-    const rightPositionX = getSpectrogramRight()
+    context.beginPath()
+    context.rect(getSpectrogramLeft(), getSpectrogramTop(), rectWidth, rectHeight)
+    context.fillStyle = "#0003"
+    context.fill()
+
+    const points = []
 
     for (let i = 0; i < AUDIO_LENGTH; i++) {
         let volume = lastAudio[i] ?? 0
@@ -49,7 +54,7 @@ function drawSpectrogram(deltaTime) {
         lastAudio[i] = volume
 
         const fraction = i / (AUDIO_LENGTH - 1)
-        const x = lerp(leftPositionX, rightPositionX, fraction)
+        const x = lerp(getSpectrogramLeft(), getSpectrogramRight(), fraction)
         const y = lerp(getSpectrogramBottom(), getSpectrogramTop(), volume)
 
         points.push({
