@@ -12,6 +12,12 @@ const settings = {
 }
 
 function applyProperties(properties) {
+    applySpectrogramProperties(properties)
+    applyThumbnailProperties(properties)
+    applyDisplayProperties(properties)
+}
+
+function applySpectrogramProperties(properties) {
     if (properties.spectrogramheight) {
         settings.spectrogramHeight = properties.spectrogramheight.value
     }
@@ -21,15 +27,9 @@ function applyProperties(properties) {
     if (properties.spectrogramspacingfrombottom) {
         settings.spectrogramSpacingFromBottom = properties.spectrogramspacingfrombottom.value
     }
-    if (properties.smoothingrate) {
-        settings.smoothingRate = properties.smoothingrate.value
-    }
-    if (properties.fpslimit) {
-        settings.fpsLimit = properties.fpslimit.value
-    }
-    if (properties.audionormalizationrate) {
-        settings.audioNormalizationRate = properties.audionormalizationrate.value
-    }
+}
+
+function applyThumbnailProperties(properties) {
     if (properties.thumbnailsize) {
         settings.thumbnailSize = properties.thumbnailsize.value
         updateThumbnailSize()
@@ -41,6 +41,18 @@ function applyProperties(properties) {
     if (properties.thumbnailtopmargin) {
         settings.thumbnailTopMargin = properties.thumbnailtopmargin.value
         updateThumbnailPosition()
+    }
+}
+
+function applyDisplayProperties(properties) {
+    if (properties.smoothingrate) {
+        settings.smoothingRate = properties.smoothingrate.value
+    }
+    if (properties.fpslimit) {
+        settings.fpsLimit = properties.fpslimit.value
+    }
+    if (properties.audionormalizationrate) {
+        settings.audioNormalizationRate = properties.audionormalizationrate.value
     }
     if (properties.debugenabled) {
         settings.debugEnabled = properties.debugenabled.value
