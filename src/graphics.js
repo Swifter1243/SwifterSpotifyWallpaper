@@ -2,8 +2,6 @@ function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-const AUDIO_LENGTH = 64
-
 function getSpectrogramLeft() {
     return settings.spectrogramSpacingFromEdge
 }
@@ -35,7 +33,7 @@ function getDeltaTime() {
 }
 
 const lastAudio = []
-function drawAudio(audioArray) {
+function draw() {
     clear()
 
     const points = []
@@ -48,13 +46,11 @@ function drawAudio(audioArray) {
     context.fillText(`Delta Time: ${deltaTime}`, 300, 300)
 
     for (let i = 0; i < AUDIO_LENGTH; i++) {
-        const left = audioArray[i]
-        const right = audioArray[i + 64]
-        let volume = (left + right) / 2
+        let volume = lastAudio[i] ?? 0
 
-        if (lastAudio[i] !== undefined) {
-            const lastVolume = lastAudio[i]
-            volume = lerpSmooth(volume, lastVolume, deltaTime, settings.smoothingRate)
+        if (currentAudio[i] !== undefined) {
+            const target = currentAudio[i]
+            volume = lerpSmooth(volume, target, deltaTime, settings.smoothingRate)
         }
         lastAudio[i] = volume
 

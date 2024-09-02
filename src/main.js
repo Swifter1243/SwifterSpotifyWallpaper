@@ -7,7 +7,7 @@ function setup() {
     initializeContext()
     attachAudioListener()
     attachSettings()
-    // queueFrame()
+    queueFrame()
 }
 
 function initializeContext() {
@@ -18,7 +18,7 @@ function initializeContext() {
 }
 
 function attachAudioListener() {
-    window.wallpaperRegisterAudioListener(drawAudio)
+    window.wallpaperRegisterAudioListener(processAudio)
 }
 
 function attachSettings() {
@@ -46,5 +46,5 @@ function queueFrame() {
 
 function onFrame() {
     queueFrame()
-    drawGraphics()
+    draw()
 }

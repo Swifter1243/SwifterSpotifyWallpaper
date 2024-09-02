@@ -15,8 +15,8 @@
 			{
 				"fraction" : true,
 				"index" : 3,
-				"max" : 50,
-				"min" : 4,
+				"max" : 400,
+				"min" : 0,
 				"order" : 103,
 				"precision" : 2,
 				"step" : 0.1,
