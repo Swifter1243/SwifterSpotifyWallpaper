@@ -57,7 +57,7 @@ function drawMedia() {
     context.fill()
 
     // Title
-    context.fillStyle = media.secondaryColor
+    context.fillStyle = settings.mediaTextColor
     context.font = `${settings.mediaTextTitleSize}px Minecraft`
     context.textBaseline = 'alphabetic'
     context.fillText(media.title, left, middle - settings.mediaTextDividerMargin)

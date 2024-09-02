@@ -1,5 +1,6 @@
 const settings = {
     // Spectrogram
+    spectrogramColor: '#FFF',
     spectrogramSpacingFromEdge: 50,
     spectrogramSpacingFromBottom: 50,
     spectrogramHeight: 300,
@@ -13,6 +14,7 @@ const settings = {
     thumbnailBorderWidth: 5,
 
     // Media Text
+    mediaTextColor: '#FFF',
     mediaTextLeftMargin: 20,
     mediaTextTitleSize: 48,
     mediaTextArtistSize: 30,
@@ -34,6 +36,9 @@ function applyProperties(properties) {
 }
 
 function applySpectrogramProperties(properties) {
+    if (properties.spectrogramcolor) {
+        settings.spectrogramColor = colorToCSS(properties.spectrogramcolor.value)
+    }
     if (properties.spectrogramheight) {
         settings.spectrogramHeight = properties.spectrogramheight.value
     }
@@ -65,6 +70,9 @@ function applyThumbnailProperties(properties) {
 }
 
 function applyMediaTextProperties(properties) {
+    if (properties.mediatextcolor) {
+        settings.mediaTextColor = colorToCSS(properties.mediatextcolor.value)
+    }
     if (properties.mediatextleftmargin) {
         settings.mediaTextLeftMargin = properties.mediatextleftmargin.value
     }

@@ -20,7 +20,7 @@ function getSpectrogramRect() {
     return [
         getSpectrogramLeft(), getSpectrogramTop(), rectWidth, rectHeight
     ]
-} 
+}
 
 function drawSpectrogram(deltaTime) {
     drawSpectrogramCurve(deltaTime)
@@ -58,20 +58,7 @@ function drawSpectrogramCurve(deltaTime) {
         })
     }
 
-    const gradient = context.createRadialGradient(
-        0,
-        canvas.height * 0.5,
-        0,
-        0,
-        canvas.height * 0.5,
-        3000
-    )
-    gradient.addColorStop(0, media.primaryColor)
-    gradient.addColorStop(0.4, media.secondaryColor)
-    gradient.addColorStop(0.75, media.tertiaryColor)
-
     drawBezierLine(points)
-
-    context.strokeStyle = gradient
+    context.strokeStyle = settings.spectrogramColor
     context.stroke()
 }

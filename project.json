@@ -7,10 +7,10 @@
 			"audionormalizationrate" : 
 			{
 				"fraction" : true,
-				"index" : 4,
+				"index" : 5,
 				"max" : 5,
 				"min" : 0,
-				"order" : 104,
+				"order" : 105,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Normalization Rate",
@@ -19,24 +19,24 @@
 			},
 			"background" : 
 			{
-				"index" : 21,
-				"order" : 121,
+				"index" : 23,
+				"order" : 123,
 				"text" : "Background",
 				"type" : "group",
 				"value" : ""
 			},
 			"backgroundimage" : 
 			{
-				"index" : 22,
-				"order" : 122,
+				"index" : 24,
+				"order" : 124,
 				"text" : "Image",
 				"type" : "file",
 				"value" : ""
 			},
 			"debugenabled" : 
 			{
-				"index" : 13,
-				"order" : 113,
+				"index" : 14,
+				"order" : 114,
 				"text" : "Debug Enabled",
 				"type" : "bool",
 				"value" : false
@@ -44,10 +44,10 @@
 			"fpslimit" : 
 			{
 				"fraction" : true,
-				"index" : 12,
+				"index" : 13,
 				"max" : 144,
 				"min" : 0,
-				"order" : 112,
+				"order" : 113,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "FPS Limit",
@@ -56,8 +56,8 @@
 			},
 			"mediatext" : 
 			{
-				"index" : 14,
-				"order" : 114,
+				"index" : 15,
+				"order" : 115,
 				"text" : "Media Text",
 				"type" : "group",
 				"value" : ""
@@ -65,21 +65,29 @@
 			"mediatextartistsize" : 
 			{
 				"fraction" : false,
-				"index" : 17,
+				"index" : 19,
 				"max" : 300,
 				"min" : 1,
-				"order" : 117,
+				"order" : 119,
 				"text" : "Artist Size",
 				"type" : "slider",
 				"value" : 30
 			},
+			"mediatextcolor" : 
+			{
+				"index" : 16,
+				"order" : 116,
+				"text" : "Text Color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
 			"mediatextdividermargin" : 
 			{
 				"fraction" : false,
-				"index" : 19,
+				"index" : 21,
 				"max" : 1000,
 				"min" : 0,
-				"order" : 119,
+				"order" : 121,
 				"text" : "Divider Margin",
 				"type" : "slider",
 				"value" : 20
@@ -87,10 +95,10 @@
 			"mediatextdivideroffset" : 
 			{
 				"fraction" : false,
-				"index" : 20,
+				"index" : 22,
 				"max" : 500,
 				"min" : -500,
-				"order" : 120,
+				"order" : 122,
 				"text" : "Divider Offset",
 				"type" : "slider",
 				"value" : 4
@@ -98,10 +106,10 @@
 			"mediatextdividerwidth" : 
 			{
 				"fraction" : false,
-				"index" : 18,
+				"index" : 20,
 				"max" : 50,
 				"min" : 1,
-				"order" : 118,
+				"order" : 120,
 				"text" : "Divider Width",
 				"type" : "slider",
 				"value" : 5
@@ -109,10 +117,10 @@
 			"mediatextleftmargin" : 
 			{
 				"fraction" : false,
-				"index" : 15,
+				"index" : 17,
 				"max" : 2000,
 				"min" : 0,
-				"order" : 115,
+				"order" : 117,
 				"text" : "Left Margin",
 				"type" : "slider",
 				"value" : 20
@@ -120,18 +128,18 @@
 			"mediatexttitlesize" : 
 			{
 				"fraction" : false,
-				"index" : 16,
+				"index" : 18,
 				"max" : 300,
 				"min" : 1,
-				"order" : 116,
+				"order" : 118,
 				"text" : "Title Size",
 				"type" : "slider",
 				"value" : 62
 			},
 			"misc" : 
 			{
-				"index" : 11,
-				"order" : 111,
+				"index" : 12,
+				"order" : 112,
 				"text" : "Display",
 				"type" : "group",
 				"value" : ""
@@ -146,10 +154,10 @@
 			"smoothingrate" : 
 			{
 				"fraction" : true,
-				"index" : 5,
+				"index" : 6,
 				"max" : 100,
 				"min" : 0,
-				"order" : 105,
+				"order" : 106,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Smoothing Rate",
@@ -164,13 +172,21 @@
 				"type" : "group",
 				"value" : ""
 			},
+			"spectrogramcolor" : 
+			{
+				"index" : 1,
+				"order" : 101,
+				"text" : "Color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
 			"spectrogramheight" : 
 			{
 				"fraction" : false,
-				"index" : 3,
+				"index" : 4,
 				"max" : 2000,
 				"min" : 0,
-				"order" : 103,
+				"order" : 104,
 				"text" : "Height",
 				"type" : "slider",
 				"value" : 300
@@ -178,10 +194,10 @@
 			"spectrogramspacingfrombottom" : 
 			{
 				"fraction" : false,
-				"index" : 2,
+				"index" : 3,
 				"max" : 2000,
 				"min" : 0,
-				"order" : 102,
+				"order" : 103,
 				"text" : "Spacing From Bottom",
 				"type" : "slider",
 				"value" : 80
@@ -189,18 +205,18 @@
 			"spectrogramspacingfromedge" : 
 			{
 				"fraction" : false,
-				"index" : 1,
+				"index" : 2,
 				"max" : 2000,
 				"min" : 0,
-				"order" : 101,
+				"order" : 102,
 				"text" : "Spacing From Edge",
 				"type" : "slider",
 				"value" : 30
 			},
 			"thumbnail" : 
 			{
-				"index" : 6,
-				"order" : 106,
+				"index" : 7,
+				"order" : 107,
 				"text" : "Thumbnail",
 				"type" : "group",
 				"value" : ""
@@ -208,10 +224,10 @@
 			"thumbnailborderwidth" : 
 			{
 				"fraction" : false,
-				"index" : 10,
+				"index" : 11,
 				"max" : 200,
 				"min" : 1,
-				"order" : 110,
+				"order" : 111,
 				"text" : "Border Width",
 				"type" : "slider",
 				"value" : 5
@@ -219,10 +235,10 @@
 			"thumbnailleftmargin" : 
 			{
 				"fraction" : false,
-				"index" : 8,
+				"index" : 9,
 				"max" : 2000,
 				"min" : 0,
-				"order" : 108,
+				"order" : 109,
 				"text" : "Left Margin",
 				"type" : "slider",
 				"value" : 30
@@ -230,10 +246,10 @@
 			"thumbnailsize" : 
 			{
 				"fraction" : false,
-				"index" : 7,
+				"index" : 8,
 				"max" : 2000,
 				"min" : 0,
-				"order" : 107,
+				"order" : 108,
 				"text" : "Size",
 				"type" : "slider",
 				"value" : 250
@@ -241,10 +257,10 @@
 			"thumbnailtopmargin" : 
 			{
 				"fraction" : false,
-				"index" : 9,
+				"index" : 10,
 				"max" : 2000,
 				"min" : 0,
-				"order" : 109,
+				"order" : 110,
 				"text" : "Top Margin",
 				"type" : "slider",
 				"value" : 30

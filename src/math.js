@@ -14,6 +14,11 @@ function softClip(value, power) {
     }
 }
 
+function colorToCSS(color) {
+    const intColor = color.split(' ').map(c => Math.ceil(c * 255));
+    return 'rgb(' + intColor + ')';
+}
+
 class Timer {
     lastTime
 
