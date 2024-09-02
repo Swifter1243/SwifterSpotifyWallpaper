@@ -66,9 +66,8 @@ function drawSpectrogramCurve(deltaTime) {
         canvas.height * 0.5,
         3000
     )
-    gradient.addColorStop(0, '#000')
-    gradient.addColorStop(0.25, media.primaryColor)
-    gradient.addColorStop(0.5, media.secondaryColor)
+    gradient.addColorStop(0, media.primaryColor)
+    gradient.addColorStop(0.4, media.secondaryColor)
     gradient.addColorStop(0.75, media.tertiaryColor)
 
     drawBezierLine(points)
