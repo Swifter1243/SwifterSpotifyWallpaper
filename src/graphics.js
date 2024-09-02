@@ -44,7 +44,7 @@ function drawSpectrogram(deltaTime) {
 
         if (currentAudio[i] !== undefined) {
             const target = currentAudio[i]
-            volume = lerpSmooth(volume, get, deltaTime, settings.smoothingRate)
+            volume = lerpSmooth(volume, target, deltaTime, settings.smoothingRate)
         }
         lastAudio[i] = volume
 
