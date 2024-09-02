@@ -31,8 +31,38 @@ function updateThumbnailSize() {
 }
 
 function updateThumbnailPosition() {
-    mediaThumbnail.style.left = `${settings.thumbnailLeftMargin}px`
-    mediaThumbnail.style.top = `${settings.thumbnailTopMargin}px`
+    mediaThumbnail.style.left = `${settings.thumbnailLeftMargin + settings.thumbnailBorderWidth}px`
+    mediaThumbnail.style.top = `${settings.thumbnailTopMargin + settings.thumbnailBorderWidth}px`
+}
+
+function drawMedia() {
+    const thumbnailTotalSize = settings.thumbnailSize + settings.thumbnailBorderWidth * 2
+    const left = settings.thumbnailLeftMargin + thumbnailTotalSize + settings.mediaTextLeftMargin
+    const middle = settings.thumbnailTopMargin + thumbnailTotalSize * 0.5 + settings.mediaTextDividerOffset
+
+    context.beginPath()
+    context.rect(
+        settings.thumbnailLeftMargin, 
+        settings.thumbnailTopMargin,
+        thumbnailTotalSize,
+        thumbnailTotalSize
+    )
+    context.fillStyle = "#FFF"
+    context.fill()
+
+    context.font = `${settings.mediaTextTitleSize}px Minecraft`
+    context.textBaseline = 'alphabetic'
+    context.fillText(media.title, left, middle - settings.mediaTextDividerMargin)
+
+    context.font = `${settings.mediaTextArtistSize}px Minecraft`
+    context.textBaseline = 'top'
+    context.fillText(media.artist, left, middle + settings.mediaTextDividerMargin - 2)
+
+    context.beginPath()
+    context.moveTo(left, middle)
+    context.lineTo(canvas.width, middle)
+    context.lineWidth = settings.mediaTextDividerWidth
+    context.stroke()
 }
 
 function processMediaStatusListener(event) {

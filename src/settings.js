@@ -10,6 +10,7 @@ const settings = {
     thumbnailSize: 250,
     thumbnailLeftMargin: 20,
     thumbnailTopMargin: 20,
+    thumbnailBorderWidth: 5,
 
     // Media Text
     mediaTextLeftMargin: 20,
@@ -54,6 +55,10 @@ function applyThumbnailProperties(properties) {
     }
     if (properties.thumbnailtopmargin) {
         settings.thumbnailTopMargin = properties.thumbnailtopmargin.value
+        updateThumbnailPosition()
+    }
+    if (properties.thumbnailborderwidth) {
+        settings.thumbnailBorderWidth = properties.thumbnailborderwidth.value
         updateThumbnailPosition()
     }
 }

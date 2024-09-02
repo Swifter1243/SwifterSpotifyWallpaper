@@ -19,8 +19,8 @@
 			},
 			"debugenabled" : 
 			{
-				"index" : 12,
-				"order" : 112,
+				"index" : 13,
+				"order" : 113,
 				"text" : "Debug Enabled",
 				"type" : "bool",
 				"value" : false
@@ -28,10 +28,10 @@
 			"fpslimit" : 
 			{
 				"fraction" : true,
-				"index" : 11,
+				"index" : 12,
 				"max" : 144,
 				"min" : 0,
-				"order" : 111,
+				"order" : 112,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "FPS Limit",
@@ -40,8 +40,8 @@
 			},
 			"mediatext" : 
 			{
-				"index" : 13,
-				"order" : 113,
+				"index" : 14,
+				"order" : 114,
 				"text" : "Media Text",
 				"type" : "group",
 				"value" : ""
@@ -49,10 +49,10 @@
 			"mediatextartistsize" : 
 			{
 				"fraction" : false,
-				"index" : 16,
+				"index" : 17,
 				"max" : 300,
 				"min" : 1,
-				"order" : 116,
+				"order" : 117,
 				"text" : "Artist Size",
 				"type" : "slider",
 				"value" : 30
@@ -60,10 +60,10 @@
 			"mediatextdividermargin" : 
 			{
 				"fraction" : false,
-				"index" : 18,
+				"index" : 19,
 				"max" : 1000,
 				"min" : 0,
-				"order" : 118,
+				"order" : 119,
 				"text" : "Divider Margin",
 				"type" : "slider",
 				"value" : 20
@@ -71,10 +71,10 @@
 			"mediatextdivideroffset" : 
 			{
 				"fraction" : false,
-				"index" : 19,
+				"index" : 20,
 				"max" : 500,
 				"min" : -500,
-				"order" : 119,
+				"order" : 120,
 				"text" : "Divider Offset",
 				"type" : "slider",
 				"value" : 4
@@ -82,10 +82,10 @@
 			"mediatextdividerwidth" : 
 			{
 				"fraction" : false,
-				"index" : 17,
+				"index" : 18,
 				"max" : 50,
 				"min" : 1,
-				"order" : 117,
+				"order" : 118,
 				"text" : "Divider Width",
 				"type" : "slider",
 				"value" : 5
@@ -93,10 +93,10 @@
 			"mediatextleftmargin" : 
 			{
 				"fraction" : false,
-				"index" : 14,
+				"index" : 15,
 				"max" : 2000,
 				"min" : 0,
-				"order" : 114,
+				"order" : 115,
 				"text" : "Left Margin",
 				"type" : "slider",
 				"value" : 20
@@ -104,18 +104,18 @@
 			"mediatexttitlesize" : 
 			{
 				"fraction" : false,
-				"index" : 15,
+				"index" : 16,
 				"max" : 300,
 				"min" : 1,
-				"order" : 115,
+				"order" : 116,
 				"text" : "Title Size",
 				"type" : "slider",
 				"value" : 62
 			},
 			"misc" : 
 			{
-				"index" : 10,
-				"order" : 110,
+				"index" : 11,
+				"order" : 111,
 				"text" : "Display",
 				"type" : "group",
 				"value" : ""
@@ -188,6 +188,17 @@
 				"text" : "Thumbnail",
 				"type" : "group",
 				"value" : ""
+			},
+			"thumbnailborderwidth" : 
+			{
+				"fraction" : false,
+				"index" : 10,
+				"max" : 200,
+				"min" : 1,
+				"order" : 110,
+				"text" : "Border Width",
+				"type" : "slider",
+				"value" : 5
 			},
 			"thumbnailleftmargin" : 
 			{
