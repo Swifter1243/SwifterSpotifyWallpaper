@@ -31,7 +31,7 @@ function queueFrame() {
     window.requestAnimationFrame(onFrame)
 }
 
-const frameDeltaTime = new DeltaTimeHandler()
+const frameDeltaTime = new Timer()
 let accumulatedFrames = 0
 function onFrame() {
     queueFrame()

@@ -6,7 +6,7 @@ function lerpSmooth(value, target, deltaTime, rate) {
     return lerp(target, value, Math.exp(-rate * deltaTime))
 }
 
-class DeltaTimeHandler {
+class Timer {
     lastTime
 
     constructor() {

@@ -18,7 +18,7 @@ function getSpectrogramBottom() {
     return settings.spectrogramBottomPosition
 }
 
-const graphicsDeltaTime = new DeltaTimeHandler()
+const graphicsDeltaTime = new Timer()
 
 function draw() {
     clear()
