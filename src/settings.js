@@ -1,4 +1,4 @@
-let settings = {
+const settings = {
     audioNormalizationRate: 1,
     spectrogramSpacingFromEdge: 30,
     spectrogramBottomPosition: 1200,
