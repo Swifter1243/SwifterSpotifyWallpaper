@@ -6,7 +6,7 @@ setup()
 function setup() {
     initializeContext()
     attachAudioListener()
-    attachSettings()
+    attachPropertyListener()
     queueFrame()
 }
 
@@ -21,22 +21,9 @@ function attachAudioListener() {
     window.wallpaperRegisterAudioListener(processAudio)
 }
 
-function attachSettings() {
+function attachPropertyListener() {
     window.wallpaperPropertyListener = {
-        applyUserProperties: (properties) => {
-            if (properties.spectrogramheight) {
-                settings.spectrogramHeight = properties.spectrogramheight.value * canvas.height * 0.5
-            }
-            if (properties.spectrogramspacingfromedge) {
-                settings.spectrogramSpacingFromEdge = properties.spectrogramspacingfromedge.value * canvas.width * 0.5
-            }
-            if (properties.spectrogrambottomposition) {
-                settings.spectrogramBottomPosition = properties.spectrogrambottomposition.value * canvas.height
-            }
-            if (properties.smoothingrate) {
-                settings.smoothingRate = properties.smoothingrate.value
-            }
-        }
+        applyUserProperties: applyProperties
     }
 }
 
@@ -44,7 +31,21 @@ function queueFrame() {
     window.requestAnimationFrame(onFrame)
 }
 
+const frameDeltaTime = new DeltaTimeHandler()
+let accumulatedFrames = 0
 function onFrame() {
     queueFrame()
+
+    if (settings.fpsLimit > 0) {
+        accumulatedFrames += frameDeltaTime.mark()
+        const targetDeltaTime = 1.0 / settings.fpsLimit
+        
+        if (accumulatedFrames < targetDeltaTime) {
+            return
+        } else {
+            accumulatedFrames -= targetDeltaTime
+        }
+    }
+
     draw()
 }

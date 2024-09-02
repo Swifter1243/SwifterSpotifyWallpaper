@@ -18,39 +18,33 @@ function getSpectrogramBottom() {
     return settings.spectrogramBottomPosition
 }
 
-let lastTime = undefined
-function getDeltaTime() {
-    const currentTime = Date.now()
+const graphicsDeltaTime = new DeltaTimeHandler()
 
-    if (lastTime === undefined) {
-        lastTime = currentTime
-        return 0
-    }
-        
-    const difference = currentTime - lastTime
-    lastTime = currentTime
-    return difference / 1000
-}
-
-const lastAudio = []
 function draw() {
     clear()
 
+    const deltaTime = graphicsDeltaTime.mark()
+
+    context.font = "48px Minecraft"
+    context.fillText(`Delta Time: ${deltaTime}`, 300, 300)
+    context.fillText(`Approx FPS: ${1.0/deltaTime}`, 300, 400)
+
+    drawSpectrogram(deltaTime)
+}
+
+const lastAudio = []
+function drawSpectrogram(deltaTime) {
     const points = []
 
     const leftPositionX = getSpectrogramLeft()
     const rightPositionX = getSpectrogramRight()
-
-    const deltaTime = getDeltaTime()
-    context.font = "48px Minecraft"
-    context.fillText(`Delta Time: ${deltaTime}`, 300, 300)
 
     for (let i = 0; i < AUDIO_LENGTH; i++) {
         let volume = lastAudio[i] ?? 0
 
         if (currentAudio[i] !== undefined) {
             const target = currentAudio[i]
-            volume = lerpSmooth(volume, target, deltaTime, settings.smoothingRate)
+            volume = lerpSmooth(volume, get, deltaTime, settings.smoothingRate)
         }
         lastAudio[i] = volume
 
