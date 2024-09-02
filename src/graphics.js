@@ -32,17 +32,47 @@ function draw() {
     context.fillText(`Approx FPS: ${1.0/deltaTime}`, 300, 400)
 }
 
-const lastAudio = []
 function drawSpectrogram(deltaTime) {
+    drawSpectrogramBackground()
+    drawSpectrogramCurve(deltaTime)
+    drawSpectrogramVolumeDebug()
+}
+
+function drawSpectrogramBackground() {
     const rectWidth = getSpectrogramRight() - getSpectrogramLeft()
     const rectHeight = getSpectrogramBottom() - getSpectrogramTop()
-
     context.beginPath()
     context.rect(getSpectrogramLeft(), getSpectrogramTop(), rectWidth, rectHeight)
     context.fillStyle = "#0003"
     context.fill()
+}
 
+function drawSpectrogramVolumeDebug() {
+    const currentY = lerp(getSpectrogramBottom(), getSpectrogramTop(), currentAverageVolume)
+    const lastY = lerp(getSpectrogramBottom(), getSpectrogramTop(), lastAverageVolume)
+
+    context.lineWidth = 3
+
+    context.beginPath()
+    context.moveTo(getSpectrogramLeft(), currentY)
+    context.lineTo(getSpectrogramRight(), currentY)
+    context.strokeStyle = "#0F0F"
+    context.stroke()
+
+    context.beginPath()
+    context.moveTo(getSpectrogramLeft(), lastY)
+    context.lineTo(getSpectrogramRight(), lastY)
+    context.strokeStyle = "#F00F"
+    context.stroke()
+}
+
+const lastAudio = []
+let lastAverageVolume = 1
+
+function drawSpectrogramCurve(deltaTime) {
     const points = []
+
+    lastAverageVolume = lerpSmooth(lastAverageVolume, currentAverageVolume, deltaTime, settings.audioNormalizationRate)
 
     for (let i = 0; i < AUDIO_LENGTH; i++) {
         let volume = lastAudio[i] ?? 0
@@ -53,7 +83,8 @@ function drawSpectrogram(deltaTime) {
         }
         lastAudio[i] = volume
 
-        volume *= 0.6
+        volume *= 1 / lastAverageVolume
+        volume *= settings.audioAmplitudeScalar
         volume = Math.min(1, volume)
 
         const fraction = i / (AUDIO_LENGTH - 1)
@@ -96,6 +127,7 @@ function drawBezierLine(points) {
     context.fillStyle = "#FFF";
     context.fill();
 
+    context.lineWidth = 1
     context.strokeStyle = "#FFF"
     context.stroke();
 }
