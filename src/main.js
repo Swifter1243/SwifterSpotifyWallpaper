@@ -25,7 +25,7 @@ function attachSettings() {
     window.wallpaperPropertyListener = {
         applyUserProperties: (properties) => {
             if (properties.spectrogramheight) {
-                settings.spectrogramHeight = properties.spectrogramheight.value * canvas.height * 20
+                settings.spectrogramHeight = properties.spectrogramheight.value * canvas.height * 0.5
             }
             if (properties.spectrogramspacingfromedge) {
                 settings.spectrogramSpacingFromEdge = properties.spectrogramspacingfromedge.value * canvas.width * 0.5
