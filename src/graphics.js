@@ -49,7 +49,7 @@ function drawSpectrogramBackground() {
 
 function drawSpectrogramVolumeDebug() {
     const currentY = lerp(getSpectrogramBottom(), getSpectrogramTop(), currentAverageVolume)
-    const lastY = lerp(getSpectrogramBottom(), getSpectrogramTop(), lastAverageVolume)
+    const lastY = lerp(getSpectrogramBottom(), getSpectrogramTop(), 1 / lastVolume)
 
     context.lineWidth = 3
 
@@ -67,12 +67,14 @@ function drawSpectrogramVolumeDebug() {
 }
 
 const lastAudio = []
-let lastAverageVolume = 1
+let lastVolume = 1
 
 function drawSpectrogramCurve(deltaTime) {
     const points = []
 
-    lastAverageVolume = lerpSmooth(lastAverageVolume, currentAverageVolume, deltaTime, settings.audioNormalizationRate)
+    const invAverageVolume = 1.0 / currentAverageVolume
+    const targetVolume = currentAverageVolume > 0 ? invAverageVolume : 0
+    lastVolume = lerpSmooth(lastVolume, targetVolume, deltaTime, settings.audioNormalizationRate)
 
     for (let i = 0; i < AUDIO_LENGTH; i++) {
         let volume = lastAudio[i] ?? 0
@@ -83,7 +85,8 @@ function drawSpectrogramCurve(deltaTime) {
         }
         lastAudio[i] = volume
 
-        volume *= 1 / lastAverageVolume
+        volume *= lastVolume
+        volume = Math.min(1, volume)
 
         const fraction = i / (AUDIO_LENGTH - 1)
         const x = lerp(getSpectrogramLeft(), getSpectrogramRight(), fraction)
