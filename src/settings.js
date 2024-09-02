@@ -1,5 +1,5 @@
 const settings = {
-    audioNormalizationRate: 1,
+    audioNormalizationRate: 0.3,
     spectrogramSpacingFromEdge: 30,
     spectrogramBottomPosition: 1200,
     spectrogramHeight: 1000,
