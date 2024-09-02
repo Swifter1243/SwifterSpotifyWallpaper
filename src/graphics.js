@@ -2,22 +2,6 @@ function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function getSpectrogramLeft() {
-    return settings.spectrogramSpacingFromEdge
-}
-
-function getSpectrogramRight() {
-    return canvas.width - settings.spectrogramSpacingFromEdge
-}
-
-function getSpectrogramTop() {
-    return getSpectrogramBottom() - settings.spectrogramHeight
-}
-
-function getSpectrogramBottom() {
-    return canvas.height - settings.spectrogramSpacingFromBottom
-}
-
 const graphicsDeltaTime = new Timer()
 
 function draw() {
@@ -30,95 +14,6 @@ function draw() {
     if (settings.debugEnabled) {
         drawDebug(deltaTime)
     }
-}
-
-function drawDebug(deltaTime) {
-    startDebugText()
-    addDebugText(`Delta Time: ${deltaTime}`)
-    addDebugText(`Approx FPS: ${1.0/deltaTime}`)
-
-    drawSpectrogramBackgroundDebug()
-    drawSpectrogramVolumeDebug()
-}
-
-const DEBUG_SPACING = 32
-let currentDebugTextPos = 0
-
-function startDebugText() {
-    currentDebugTextPos = 0
-    context.font = `${DEBUG_SPACING}px Arial`
-}
-
-function addDebugText(text) {
-    currentDebugTextPos += DEBUG_SPACING
-    context.fillText(text, 10, currentDebugTextPos)
-}
-
-function drawSpectrogram(deltaTime) {
-    drawSpectrogramCurve(deltaTime)
-}
-
-function drawSpectrogramBackgroundDebug() {
-    const rectWidth = getSpectrogramRight() - getSpectrogramLeft()
-    const rectHeight = getSpectrogramBottom() - getSpectrogramTop()
-    context.beginPath()
-    context.rect(getSpectrogramLeft(), getSpectrogramTop(), rectWidth, rectHeight)
-    context.fillStyle = "#0003"
-    context.fill()
-}
-
-function drawSpectrogramVolumeDebug() {
-    const currentY = lerp(getSpectrogramBottom(), getSpectrogramTop(), currentAverageVolume)
-    const lastY = lerp(getSpectrogramBottom(), getSpectrogramTop(), 1 / lastVolume)
-
-    context.lineWidth = 3
-
-    context.beginPath()
-    context.moveTo(getSpectrogramLeft(), currentY)
-    context.lineTo(getSpectrogramRight(), currentY)
-    context.strokeStyle = "#0F0F"
-    context.stroke()
-
-    context.beginPath()
-    context.moveTo(getSpectrogramLeft(), lastY)
-    context.lineTo(getSpectrogramRight(), lastY)
-    context.strokeStyle = "#F00F"
-    context.stroke()
-}
-
-const lastAudio = []
-let lastVolume = 1
-
-function drawSpectrogramCurve(deltaTime) {
-    const points = []
-
-    const invAverageVolume = 1.0 / currentAverageVolume
-    const targetVolume = currentAverageVolume > 0 ? invAverageVolume : 0
-    lastVolume = lerpSmooth(lastVolume, targetVolume, deltaTime, settings.audioNormalizationRate)
-
-    for (let i = 0; i < AUDIO_LENGTH; i++) {
-        let volume = lastAudio[i] ?? 0
-
-        if (currentAudio[i] !== undefined) {
-            const target = currentAudio[i]
-            volume = lerpSmooth(volume, target, deltaTime, settings.smoothingRate)
-        }
-        lastAudio[i] = volume
-
-        volume *= lastVolume
-        volume = softClip(volume, 0.2)
-
-        const fraction = i / (AUDIO_LENGTH - 1)
-        const x = lerp(getSpectrogramLeft(), getSpectrogramRight(), fraction)
-        const y = lerp(getSpectrogramBottom(), getSpectrogramTop(), volume)
-
-        points.push({
-            x,
-            y
-        })
-    }
-
-    drawBezierLine(points)
 }
 
 function drawBezierLine(points) {
