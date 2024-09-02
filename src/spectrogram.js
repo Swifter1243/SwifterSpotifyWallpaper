@@ -76,8 +76,4 @@ function drawSpectrogramCurve(deltaTime) {
     context.fillStyle = gradient
     context.closePath();
     context.fill()
-
-    context.lineWidth = 5
-    context.strokeStyle = '#FFF2'
-    context.stroke();
 }
