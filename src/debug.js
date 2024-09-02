@@ -8,6 +8,7 @@ function drawDebug(deltaTime) {
 }
 
 const DEBUG_SPACING = 32
+const DEBUG_LABEL_SIZE = 20
 let currentDebugTextPos = 0
 
 function startDebugText() {
@@ -44,4 +45,10 @@ function drawSpectrogramVolumeDebug() {
     context.lineTo(getSpectrogramRight(), currentY)
     context.strokeStyle = "#F00F"
     context.stroke()
+
+    context.font = `${DEBUG_LABEL_SIZE}px Arial`
+    context.fillStyle = '#FFF'
+    context.textBaseline = 'bottom'
+    context.fillText('Target Scalar', getSpectrogramLeft(), targetY - 6)
+    context.fillText('Smoothed Scalar', getSpectrogramLeft(), currentY - 6)
 }
