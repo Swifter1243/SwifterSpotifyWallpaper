@@ -11,7 +11,7 @@ const DEBUG_SPACING = 32
 let currentDebugTextPos = 0
 
 function startDebugText() {
-    currentDebugTextPos = 0
+    currentDebugTextPos = canvas.height * 0.5
     context.font = `${DEBUG_SPACING}px Arial`
 }
 
@@ -28,20 +28,20 @@ function drawSpectrogramBackgroundDebug() {
 }
 
 function drawSpectrogramVolumeDebug() {
-    const currentY = lerp(getSpectrogramBottom(), getSpectrogramTop(), currentAverageVolume)
-    const lastY = lerp(getSpectrogramBottom(), getSpectrogramTop(), 1 / lastVolume)
+    const targetY = lerp(getSpectrogramBottom(), getSpectrogramTop(), 1 / getTargetScalar())
+    const currentY = lerp(getSpectrogramBottom(), getSpectrogramTop(), 1 / currentScalar)
 
     context.lineWidth = 3
 
     context.beginPath()
-    context.moveTo(getSpectrogramLeft(), currentY)
-    context.lineTo(getSpectrogramRight(), currentY)
+    context.moveTo(getSpectrogramLeft(), targetY)
+    context.lineTo(getSpectrogramRight(), targetY)
     context.strokeStyle = "#0F0F"
     context.stroke()
 
     context.beginPath()
-    context.moveTo(getSpectrogramLeft(), lastY)
-    context.lineTo(getSpectrogramRight(), lastY)
+    context.moveTo(getSpectrogramLeft(), currentY)
+    context.lineTo(getSpectrogramRight(), currentY)
     context.strokeStyle = "#F00F"
     context.stroke()
 }

@@ -1,17 +1,17 @@
-const currentAudio = []
-let currentAverageVolume = 1
+const targetAudio = []
+let targetAverageVolume = 1
 
 const AUDIO_LENGTH = 64
 
 function processAudio(audioArray) {
-    currentAverageVolume = 0
+    targetAverageVolume = 0
 
     for (let i = 0; i < AUDIO_LENGTH; i++) {
         const left = audioArray[i]
         const right = audioArray[i + 64]
         const volume = (left + right) / 2.0
-        currentAudio[i] = volume
+        targetAudio[i] = volume
 
-        currentAverageVolume = Math.max(currentAverageVolume, volume)
+        targetAverageVolume = Math.max(targetAverageVolume, volume)
     }
 }

@@ -26,26 +26,32 @@ function drawSpectrogram(deltaTime) {
     drawSpectrogramCurve(deltaTime)
 }
 
-const lastAudio = []
-let lastVolume = 1
+function getTargetScalar() {
+    if (targetAverageVolume > 0) {
+        return 1.0 / targetAverageVolume
+    } else {
+        return 0
+    }
+}
+
+const currentAudio = []
+let currentScalar = 1
 
 function drawSpectrogramCurve(deltaTime) {
     const points = []
 
-    const invAverageVolume = 1.0 / currentAverageVolume
-    const targetVolume = currentAverageVolume > 0 ? invAverageVolume : 0
-    lastVolume = lerpSmooth(lastVolume, targetVolume, deltaTime, settings.audioNormalizationRate)
+    currentScalar = lerpSmooth(currentScalar, getTargetScalar(), deltaTime, settings.audioNormalizationRate)
 
     for (let i = 0; i < AUDIO_LENGTH; i++) {
-        let volume = lastAudio[i] ?? 0
+        let volume = currentAudio[i] ?? 0
 
-        if (currentAudio[i] !== undefined) {
-            const target = currentAudio[i]
+        if (targetAudio[i] !== undefined) {
+            const target = targetAudio[i]
             volume = lerpSmooth(volume, target, deltaTime, settings.smoothingRate)
         }
-        lastAudio[i] = volume
+        currentAudio[i] = volume
 
-        volume *= lastVolume
+        volume *= currentScalar
         volume = softClip(volume, 0.2)
 
         const fraction = i / (AUDIO_LENGTH - 1)
