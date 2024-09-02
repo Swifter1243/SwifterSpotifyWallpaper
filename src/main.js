@@ -1,20 +1,30 @@
+let canvas = null
+let context = null
+
 setup()
 
 function setup() {
-    resizeCanvas()
-    queueNextFrame()
+    initializeContext()
+    attachAudioListener()
+    // queueFrame()
 }
 
-function queueNextFrame() {
-    window.requestAnimationFrame(draw)
+function initializeContext() {
+    canvas = document.getElementById("canvas")
+    context = canvas.getContext("2d")
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
 
-function clear() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+function attachAudioListener() {
+    window.wallpaperRegisterAudioListener(drawAudio)
 }
 
-function draw() {
-    queueNextFrame()
-    clear()
+function queueFrame() {
+    window.requestAnimationFrame(onFrame)
+}
+
+function onFrame() {
+    queueFrame()
     drawGraphics()
 }
