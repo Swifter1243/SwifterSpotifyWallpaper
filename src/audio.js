@@ -9,11 +9,9 @@ function processAudio(audioArray) {
     for (let i = 0; i < AUDIO_LENGTH; i++) {
         const left = audioArray[i]
         const right = audioArray[i + 64]
-        const volume = (left + right) / 2
+        const volume = Math.min((left + right) / 2.0, 1)
         currentAudio[i] = volume
 
-        currentAverageVolume += volume
+        currentAverageVolume = Math.max(currentAverageVolume, volume)
     }
-
-    currentAverageVolume /= AUDIO_LENGTH
 }

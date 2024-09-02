@@ -1,5 +1,4 @@
 let settings = {
-    audioAmplitudeScalar: 0.2,
     audioNormalizationRate: 1,
     spectrogramSpacingFromEdge: 30,
     spectrogramBottomPosition: 1200,
@@ -23,9 +22,6 @@ function applyProperties(properties) {
     }
     if (properties.fpslimit) {
         settings.fpsLimit = properties.fpslimit.value
-    }
-    if (properties.audioamplitudescalar) {
-        settings.audioAmplitudeScalar = properties.audioamplitudescalar.value
     }
     if (properties.audionormalizationrate) {
         settings.audioNormalizationRate = properties.audionormalizationrate.value

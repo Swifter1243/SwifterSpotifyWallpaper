@@ -4,19 +4,6 @@
 	{
 		"properties" : 
 		{
-			"audioamplitudescalar" : 
-			{
-				"fraction" : true,
-				"index" : 6,
-				"max" : 1,
-				"min" : 0,
-				"order" : 106,
-				"precision" : 3,
-				"step" : 0.01,
-				"text" : "Audio Amplitude Scalar",
-				"type" : "slider",
-				"value" : 0.2
-			},
 			"audionormalizationrate" : 
 			{
 				"fraction" : true,
