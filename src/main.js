@@ -33,6 +33,9 @@ function attachSettings() {
             if (properties.spectrogrambottomposition) {
                 settings.spectrogramBottomPosition = properties.spectrogrambottomposition.value * canvas.height
             }
+            if (properties.smoothingrate) {
+                settings.smoothingRate = properties.smoothingrate.value
+            }
         }
     }
 }

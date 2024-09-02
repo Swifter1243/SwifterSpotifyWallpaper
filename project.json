@@ -11,6 +11,19 @@
 				"type" : "color",
 				"value" : "0 0 0"
 			},
+			"smoothingrate" : 
+			{
+				"fraction" : true,
+				"index" : 3,
+				"max" : 50,
+				"min" : 4,
+				"order" : 103,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Smoothing Rate",
+				"type" : "slider",
+				"value" : 10
+			},
 			"spectrogrambottomposition" : 
 			{
 				"fraction" : true,
