@@ -72,7 +72,6 @@ function drawSpectrogramCurve(deltaTime) {
 
     drawBezierLine(points)
 
-    context.fillStyle = gradient
-    context.closePath();
-    context.fill()
+    context.strokeStyle = gradient
+    context.stroke()
 }
