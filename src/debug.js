@@ -14,6 +14,8 @@ let currentDebugTextPos = 0
 function startDebugText() {
     currentDebugTextPos = canvas.height * 0.5
     context.font = `${DEBUG_SPACING}px Arial`
+    context.textBaseline = 'bottom'
+    context.textAlign = 'left'
 }
 
 function addDebugText(text) {
@@ -46,9 +48,16 @@ function drawSpectrogramVolumeDebug() {
     context.strokeStyle = "#F00F"
     context.stroke()
 
+    context.beginPath()
+    context.moveTo(getSpectrogramLeft(), getSpectrogramTop())
+    context.lineTo(getSpectrogramRight(), getSpectrogramTop())
+    context.strokeStyle = "#00FF"
+    context.stroke()
+
     context.font = `${DEBUG_LABEL_SIZE}px Arial`
     context.fillStyle = '#FFF'
     context.textBaseline = 'bottom'
     context.fillText('Target Scalar', getSpectrogramLeft(), targetY - 6)
     context.fillText('Smoothed Scalar', getSpectrogramLeft(), currentY - 6)
+    context.fillText('Baseline Scalar', getSpectrogramLeft(), getSpectrogramTop())
 }
