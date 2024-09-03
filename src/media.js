@@ -8,7 +8,8 @@ let playbackLastChanged = performance.now()
 const HIDE_ANIMATION_LENGTH = 1
 const SHOW_ANIMATION_LENGTH = 2
 
-const END_SONG_PROXIMITY_START = 4
+const END_SONG_PROXIMITY_START = 3
+const END_SONG_PROXIMITY_OFFSET = 1
 
 const media = {
     isEnabled: true,
@@ -61,9 +62,9 @@ function getSongEdgeProximity() {
         return interpolatedPosition / HIDE_ANIMATION_LENGTH
     } 
 
-    if (interpolatedPosition > media.duration - END_SONG_PROXIMITY_START) {
-        const distanceToEnd = (media.duration - interpolatedPosition) / END_SONG_PROXIMITY_START
-        return distanceToEnd
+    if (interpolatedPosition > media.duration - END_SONG_PROXIMITY_START - END_SONG_PROXIMITY_OFFSET) {
+        const distanceToEnd = (media.duration - interpolatedPosition - END_SONG_PROXIMITY_OFFSET) / END_SONG_PROXIMITY_START
+        return clamp01(distanceToEnd)
     }
 
     return 1
