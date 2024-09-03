@@ -19,8 +19,8 @@
 			},
 			"background" : 
 			{
-				"index" : 22,
-				"order" : 122,
+				"index" : 25,
+				"order" : 125,
 				"text" : "Background",
 				"type" : "group",
 				"value" : ""
@@ -71,7 +71,7 @@
 				"order" : 120,
 				"text" : "Artist Size",
 				"type" : "slider",
-				"value" : 30
+				"value" : 34
 			},
 			"mediatextcolor" : 
 			{
@@ -84,21 +84,21 @@
 			"mediatextdividermargin" : 
 			{
 				"fraction" : false,
-				"index" : 24,
+				"index" : 23,
 				"max" : 1000,
 				"min" : 0,
-				"order" : 124,
+				"order" : 123,
 				"text" : "Divider Margin",
 				"type" : "slider",
-				"value" : 20
+				"value" : 15
 			},
 			"mediatextdivideroffset" : 
 			{
 				"fraction" : false,
-				"index" : 25,
+				"index" : 24,
 				"max" : 500,
 				"min" : -500,
-				"order" : 125,
+				"order" : 124,
 				"text" : "Divider Offset",
 				"type" : "slider",
 				"value" : 4
@@ -106,10 +106,10 @@
 			"mediatextdividerwidth" : 
 			{
 				"fraction" : false,
-				"index" : 23,
+				"index" : 22,
 				"max" : 50,
 				"min" : 1,
-				"order" : 123,
+				"order" : 122,
 				"text" : "Divider Width",
 				"type" : "slider",
 				"value" : 5
@@ -211,7 +211,7 @@
 				"order" : 104,
 				"text" : "Height",
 				"type" : "slider",
-				"value" : 300
+				"value" : 220
 			},
 			"spectrogramspacingfrombottom" : 
 			{

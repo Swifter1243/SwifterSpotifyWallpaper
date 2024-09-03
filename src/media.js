@@ -120,6 +120,10 @@ function getMediaTextMiddle() {
     return settings.thumbnailTopMargin + getThumbnailTotalSize() * 0.5 + settings.mediaTextDividerOffset
 }
 
+function getMediaDividerFullMargin() {
+    return settings.mediaTextDividerMargin + settings.mediaTextDividerWidth * 0.5
+}
+
 function drawMedia(deltaTime) {
     updateSmoothedPosition(deltaTime)
 
@@ -154,7 +158,7 @@ function drawMediaTextTitle() {
     context.font = `${settings.mediaTextTitleSize}px Minecraft`
     context.textBaseline = 'alphabetic'
 
-    let y = getMediaTextMiddle() - settings.mediaTextDividerMargin
+    let y = getMediaTextMiddle() - getMediaDividerFullMargin()
     y += (1 - getHideAnimationPosition()) * settings.mediaTextTitleSize * 1.5
 
     context.save()
@@ -170,7 +174,7 @@ function drawMediaTextArtist() {
     context.font = `${settings.mediaTextArtistSize}px Minecraft`
     context.textBaseline = 'top'
 
-    let y = getMediaTextMiddle() + settings.mediaTextDividerMargin - 2
+    let y = getMediaTextMiddle() + getMediaDividerFullMargin() - 2
     y -= (1 - getHideAnimationPosition()) * settings.mediaTextTitleSize * 2
 
     context.save()
