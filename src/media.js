@@ -1,6 +1,14 @@
 let mediaThumbnail = null
+
 let positionLastUpdated = performance.now()
 let lastInterpolatedPosition = 0
+
+let playbackLastChanged = performance.now()
+
+const HIDE_ANIMATION_LENGTH = 1
+const SHOW_ANIMATION_LENGTH = 2
+
+const END_SONG_PROXIMITY_START = 4
 
 const media = {
     isEnabled: true,
@@ -25,14 +33,53 @@ function isPrimaryColorBright() {
     return media.highContrastColor.includes('F')
 }
 
+function isMediaPlaying() {
+    return media.state === window.wallpaperMediaIntegration.PLAYBACK_PLAYING
+}
+
 function getInterpolatedPosition() {
-    if (media.state === window.wallpaperMediaIntegration.PLAYBACK_PLAYING) {
+    if (isMediaPlaying()) {
         const differenceMs = performance.now() - positionLastUpdated
         const position = media.position + differenceMs / 1000
         lastInterpolatedPosition = Math.min(position, media.duration)
     }
 
     return lastInterpolatedPosition
+}
+
+function getHideAnimationPosition() {
+    const pauseHidePosition = getPauseHidePosition()
+    const songEdgeProximity = getSongEdgeProximity()
+    const position = pauseHidePosition * songEdgeProximity
+    return easeOutExpo(position)
+}
+
+function getSongEdgeProximity() {
+    const interpolatedPosition = getInterpolatedPosition()
+
+    if (interpolatedPosition < HIDE_ANIMATION_LENGTH) {
+        return interpolatedPosition / HIDE_ANIMATION_LENGTH
+    } 
+
+    if (interpolatedPosition > media.duration - END_SONG_PROXIMITY_START) {
+        const distanceToEnd = (media.duration - interpolatedPosition) / END_SONG_PROXIMITY_START
+        return distanceToEnd
+    }
+
+    return 1
+}
+
+function getPauseHidePosition() {
+    const differenceMs = performance.now() - playbackLastChanged
+    const differenceSec = differenceMs / 1000
+
+    if (isMediaPlaying()) { // show
+        const animation = clamp01(differenceSec / SHOW_ANIMATION_LENGTH)
+        return animation
+    } else { // hide
+        const animation = clamp01(differenceSec / HIDE_ANIMATION_LENGTH)
+        return Math.pow(1 - animation, 8)
+    }
 }
 
 function initializeMediaThumbnail() {
@@ -98,13 +145,33 @@ function drawMediaTextTitle() {
     context.textAlign = 'left'
     context.font = `${settings.mediaTextTitleSize}px Minecraft`
     context.textBaseline = 'alphabetic'
-    context.fillText(media.title, getMediaTextLeft(), getMediaTextMiddle() - settings.mediaTextDividerMargin)
+
+    let y = getMediaTextMiddle() - settings.mediaTextDividerMargin
+    y += (1 - getHideAnimationPosition()) * settings.mediaTextTitleSize * 1.5
+
+    context.save()
+    context.beginPath();
+    context.rect(0, 0, canvas.width, getMediaTextMiddle())
+    context.clip()
+
+    context.fillText(media.title, getMediaTextLeft(), y)
+    context.restore()
 }
 
 function drawMediaTextArtist() {
     context.font = `${settings.mediaTextArtistSize}px Minecraft`
     context.textBaseline = 'top'
-    context.fillText(media.artist, getMediaTextLeft(), getMediaTextMiddle() + settings.mediaTextDividerMargin - 2)
+
+    let y = getMediaTextMiddle() + settings.mediaTextDividerMargin - 2
+    y -= (1 - getHideAnimationPosition()) * settings.mediaTextTitleSize * 2
+
+    context.save()
+    context.beginPath();
+    context.rect(0, getMediaTextMiddle(), canvas.width, canvas.height - getMediaTextMiddle())
+    context.clip()
+
+    context.fillText(media.artist, getMediaTextLeft(), y)
+    context.restore()
 }
 
 function drawMediaProgressText() {
@@ -112,8 +179,13 @@ function drawMediaProgressText() {
     context.font = `${settings.mediaTextProgressSize}px Minecraft`
     context.textBaseline = 'top'
     context.textAlign = 'right'
+
     const progressText = `${formatTimestamp(getInterpolatedPosition())} / ${formatTimestamp(media.duration)}`
-    context.fillText(progressText, getMediaTextRight(), getMediaTextMiddle() + settings.mediaTextDividerMargin)
+
+    let x = getMediaTextRight()
+    x += settings.mediaTextProgressSize * 50 * (1 - getHideAnimationPosition())
+
+    context.fillText(progressText, x, getMediaTextMiddle() + settings.mediaTextDividerMargin)
 }
 
 function drawMediaSeparator() {
@@ -127,7 +199,8 @@ function drawMediaSeparator() {
 
 function drawMediaProgressBar() {
     const progressColor = isPrimaryColorBright() ? '#FFF' : media.primaryColor
-    const progressAmount = getInterpolatedPosition() / media.duration
+    let progressAmount = getInterpolatedPosition() / media.duration
+    progressAmount *= getHideAnimationPosition()
     const progressEnd = lerp(getMediaTextLeft(), getMediaTextRight(), progressAmount)
 
     context.beginPath()
@@ -141,9 +214,9 @@ function drawMediaProgressBar() {
     const notchHeight = settings.mediaTextDividerWidth + 6
     context.fillStyle = '#FFF'
     context.fillRect(
-        progressEnd - notchWidth * 0.5,
+        progressEnd - notchWidth * 0.5 * getHideAnimationPosition(),
         getMediaTextMiddle() - notchHeight * 0.5,
-        notchWidth,
+        notchWidth * getHideAnimationPosition(),
         notchHeight
     )
 }
@@ -172,6 +245,7 @@ function processMediaThumbnailListener(event) {
 }
 
 function processMediaPlaybackListener(event) {
+    playbackLastChanged = performance.now()
     media.state = event.state
 }
 

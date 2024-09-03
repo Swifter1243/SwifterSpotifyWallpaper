@@ -14,6 +14,14 @@ function softClip(value, power) {
     }
 }
 
+function clamp01(x) {
+    return Math.max(0, Math.min(x, 1))
+}
+
+function easeOutExpo(x) {
+    return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+}
+
 function colorToCSS(color) {
     const intColor = color.split(' ').map(c => Math.ceil(c * 255));
     return 'rgb(' + intColor + ')';
