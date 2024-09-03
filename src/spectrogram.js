@@ -66,5 +66,6 @@ function drawSpectrogramCurve(deltaTime) {
 
     drawBezierLine(points)
     context.strokeStyle = settings.spectrogramColor
+    context.lineWidth = 5
     context.stroke()
 }

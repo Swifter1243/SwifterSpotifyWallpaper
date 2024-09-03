@@ -3,6 +3,7 @@ function drawDebug(deltaTime) {
     addDebugText(`Delta Time: ${deltaTime}`)
     addDebugText(`Approx FPS: ${1.0/deltaTime}`)
 
+    drawTrueSpectrogram()
     drawSpectrogramBackgroundDebug()
     drawSpectrogramVolumeDebug()
 }
@@ -60,4 +61,26 @@ function drawSpectrogramVolumeDebug() {
     context.fillText('Target Scalar', getSpectrogramLeft(), targetY - 6)
     context.fillText('Smoothed Scalar', getSpectrogramLeft(), currentY - 6)
     context.fillText('Baseline Scalar', getSpectrogramLeft(), getSpectrogramTop())
+}
+
+function drawTrueSpectrogram() {
+    const points = []
+
+    for (let i = 0; i < AUDIO_LENGTH; i++) {
+        let volume = currentAudio[i] ?? 0
+
+        const fraction = i / (AUDIO_LENGTH - 1)
+        const x = lerp(getSpectrogramLeft(), getSpectrogramRight(), fraction)
+        const y = lerp(getSpectrogramBottom(), getSpectrogramTop(), volume)
+
+        points.push({
+            x,
+            y
+        })
+    }
+
+    drawBezierLine(points)
+    context.lineWidth = 3
+    context.strokeStyle = '#F008'
+    context.stroke()
 }
