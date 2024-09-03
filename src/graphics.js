@@ -10,7 +10,7 @@ function draw() {
     const deltaTime = graphicsDeltaTime.mark()
 
     drawSpectrogram(deltaTime)
-    drawMedia()
+    drawMedia(deltaTime)
 
     if (settings.debugEnabled) {
         drawDebug(deltaTime)
