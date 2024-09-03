@@ -2,6 +2,7 @@ let mediaThumbnail = null
 
 let positionLastUpdated = performance.now()
 let lastInterpolatedPosition = 0
+let smoothedPosition = 0
 
 let playbackLastChanged = performance.now()
 
@@ -48,6 +49,10 @@ function getInterpolatedPosition() {
     return lastInterpolatedPosition
 }
 
+function updateSmoothedPosition(deltaTime) {
+    smoothedPosition = lerpSmooth(smoothedPosition, getInterpolatedPosition(), deltaTime, 5)
+}
+
 function getHideAnimationPosition() {
     const pauseHidePosition = getPauseHidePosition()
     const songEdgeProximity = getSongEdgeProximity()
@@ -56,14 +61,14 @@ function getHideAnimationPosition() {
 }
 
 function getSongEdgeProximity() {
-    const interpolatedPosition = getInterpolatedPosition()
+    const position = smoothedPosition
 
-    if (interpolatedPosition < HIDE_ANIMATION_LENGTH) {
-        return interpolatedPosition / HIDE_ANIMATION_LENGTH
+    if (position < HIDE_ANIMATION_LENGTH) {
+        return position / HIDE_ANIMATION_LENGTH
     } 
 
-    if (interpolatedPosition > media.duration - END_SONG_PROXIMITY_START - END_SONG_PROXIMITY_OFFSET) {
-        const distanceToEnd = (media.duration - interpolatedPosition - END_SONG_PROXIMITY_OFFSET) / END_SONG_PROXIMITY_START
+    if (position > media.duration - END_SONG_PROXIMITY_START - END_SONG_PROXIMITY_OFFSET) {
+        const distanceToEnd = (media.duration - position - END_SONG_PROXIMITY_OFFSET) / END_SONG_PROXIMITY_START
         return clamp01(distanceToEnd)
     }
 
@@ -116,6 +121,8 @@ function getMediaTextMiddle() {
 }
 
 function drawMedia(deltaTime) {
+    updateSmoothedPosition(deltaTime)
+
     drawThumbnailBorder()
     drawMediaTextTitle()
     drawMediaTextArtist()
@@ -181,7 +188,7 @@ function drawMediaProgressText() {
     context.textBaseline = 'top'
     context.textAlign = 'right'
 
-    const progressText = `${formatTimestamp(getInterpolatedPosition())} / ${formatTimestamp(media.duration)}`
+    const progressText = `${formatTimestamp(smoothedPosition)} / ${formatTimestamp(media.duration)}`
 
     let x = getMediaTextRight()
     x += settings.mediaTextProgressSize * 50 * (1 - getHideAnimationPosition())
@@ -200,7 +207,7 @@ function drawMediaSeparator() {
 
 function drawMediaProgressBar() {
     const progressColor = isPrimaryColorBright() ? '#FFF' : media.primaryColor
-    let progressAmount = getInterpolatedPosition() / media.duration
+    let progressAmount = smoothedPosition / media.duration
     progressAmount *= getHideAnimationPosition()
     const progressEnd = lerp(getMediaTextLeft(), getMediaTextRight(), progressAmount)
 
@@ -227,6 +234,7 @@ function processMediaStatusListener(event) {
 }
 
 function processMediaPropertiesListener(event) {
+    smoothedPosition = 0
     media.title = event.title
     media.artist = event.artist
     media.subTitle = event.subTitle
