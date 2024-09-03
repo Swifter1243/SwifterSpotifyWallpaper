@@ -1,3 +1,8 @@
+body {
+    background-image: url('./default_image.png');
+    background-size: cover;
+}
+
 canvas {
     position: fixed;
     top: 0px;

@@ -99,8 +99,7 @@ function applyMediaTextProperties(properties) {
 
 function applyBackgroundProperties(properties) {
     if (properties.backgroundimage) {
-        const imagePath = 'file:///' + properties.backgroundimage.value;
-        background.src = imagePath
+        document.body.style.backgroundImage = `url("file:///${properties.backgroundimage.value}")`
     }
 }
 

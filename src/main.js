@@ -1,13 +1,11 @@
 let canvas = null
 let context = null
-let background = null
 
 setup()
 
 function setup() {
     initializeContext()
     initializeMediaThumbnail()
-    initializeBackground()
     attachAudioListener()
     attachMediaListeners()
     attachPropertyListener()
@@ -19,10 +17,6 @@ function initializeContext() {
     context = canvas.getContext("2d")
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-}
-
-function initializeBackground() {
-    background = document.getElementById("background")
 }
 
 function attachAudioListener() {
