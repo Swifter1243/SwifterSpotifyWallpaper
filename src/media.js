@@ -21,13 +21,17 @@ const media = {
     duration: 1
 }
 
+function isPrimaryColorBright() {
+    return media.highContrastColor.includes('F')
+}
+
 function getInterpolatedPosition() {
     if (media.state === window.wallpaperMediaIntegration.PLAYBACK_PLAYING) {
         const differenceMs = performance.now() - positionLastUpdated
         const position = media.position + differenceMs / 1000
         lastInterpolatedPosition = Math.min(position, media.duration)
     }
-    
+
     return lastInterpolatedPosition
 }
 
@@ -51,10 +55,11 @@ function drawMedia() {
     const thumbnailTotalSize = settings.thumbnailSize + settings.thumbnailBorderWidth * 2
     const left = settings.thumbnailLeftMargin + thumbnailTotalSize + settings.mediaTextLeftMargin
     const middle = settings.thumbnailTopMargin + thumbnailTotalSize * 0.5 + settings.mediaTextDividerOffset
+    const right = canvas.width - settings.mediaTextRightMargin
 
     // Border
     const borderRect = [
-        settings.thumbnailLeftMargin, 
+        settings.thumbnailLeftMargin,
         settings.thumbnailTopMargin,
         thumbnailTotalSize,
         thumbnailTotalSize
@@ -63,8 +68,8 @@ function drawMedia() {
     context.beginPath()
     context.rect(...borderRect)
     const gradient = context.createLinearGradient(...borderRect)
-    gradient.addColorStop(0, media.primaryColor)
-    gradient.addColorStop(1, media.secondaryColor)
+    gradient.addColorStop(0, media.secondaryColor)
+    gradient.addColorStop(1, media.primaryColor)
     context.fillStyle = gradient
     context.fill()
 
@@ -86,15 +91,39 @@ function drawMedia() {
     context.textBaseline = 'top'
     context.textAlign = 'right'
     const progressText = `${formatTimestamp(getInterpolatedPosition())} / ${formatTimestamp(media.duration)}`
-    context.fillText(progressText, canvas.width - settings.mediaTextRightMargin, middle +  + settings.mediaTextDividerMargin)
+    context.fillText(progressText, right, middle + + settings.mediaTextDividerMargin)
 
     // Separator
+    const progressColor = isPrimaryColorBright() ? '#FFF' : media.primaryColor
+    const separatorColor = '#0006'
+
     context.beginPath()
     context.moveTo(left, middle)
-    context.lineTo(canvas.width - settings.mediaTextRightMargin, middle)
-    context.strokeStyle = media.secondaryColor
+    context.lineTo(right, middle)
+    context.strokeStyle = separatorColor
     context.lineWidth = settings.mediaTextDividerWidth
     context.stroke()
+
+    // Progress Bar
+    const progressAmount = getInterpolatedPosition() / media.duration
+    const progressEnd = lerp(left, right, progressAmount)
+
+    context.beginPath()
+    context.moveTo(left, middle)
+    context.lineTo(progressEnd, middle)
+    context.strokeStyle = progressColor
+    context.lineWidth = settings.mediaTextDividerWidth + 2
+    context.stroke()
+
+    const notchWidth = 5
+    const notchHeight = settings.mediaTextDividerWidth + 6
+    context.fillStyle = '#FFF'
+    context.fillRect(
+        progressEnd - notchWidth * 0.5,
+        middle - notchHeight * 0.5,
+        notchWidth,
+        notchHeight
+    )
 }
 
 function processMediaStatusListener(event) {
