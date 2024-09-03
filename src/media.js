@@ -199,7 +199,7 @@ function drawMediaProgressText() {
 function drawMediaSeparator() {
     context.beginPath()
     context.moveTo(getMediaTextLeft(), getMediaTextMiddle())
-    context.lineTo(getMediaTextLeft(), getMediaTextMiddle())
+    context.lineTo(getMediaTextRight(), getMediaTextMiddle())
     context.strokeStyle = '#0006'
     context.lineWidth = settings.mediaTextDividerWidth
     context.stroke()
