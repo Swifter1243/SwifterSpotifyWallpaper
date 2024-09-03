@@ -1,4 +1,6 @@
 let mediaThumbnail = null
+let positionLastUpdated = performance.now()
+let lastInterpolatedPosition = 0
 
 const media = {
     isEnabled: true,
@@ -17,6 +19,16 @@ const media = {
     state: window.wallpaperMediaIntegration.PLAYBACK_STOPPED,
     position: 0,
     duration: 1
+}
+
+function getInterpolatedPosition() {
+    if (media.state === window.wallpaperMediaIntegration.PLAYBACK_PLAYING) {
+        const differenceMs = performance.now() - positionLastUpdated
+        const position = media.position + differenceMs / 1000
+        lastInterpolatedPosition = Math.min(position, media.duration)
+    }
+    
+    return lastInterpolatedPosition
 }
 
 function initializeMediaThumbnail() {
@@ -58,6 +70,7 @@ function drawMedia() {
 
     // Title
     context.fillStyle = settings.mediaTextColor
+    context.textAlign = 'left'
     context.font = `${settings.mediaTextTitleSize}px Minecraft`
     context.textBaseline = 'alphabetic'
     context.fillText(media.title, left, middle - settings.mediaTextDividerMargin)
@@ -66,6 +79,14 @@ function drawMedia() {
     context.font = `${settings.mediaTextArtistSize}px Minecraft`
     context.textBaseline = 'top'
     context.fillText(media.artist, left, middle + settings.mediaTextDividerMargin - 2)
+
+    // Progress Text
+    context.fillStyle = settings.mediaTextColor
+    context.font = `${settings.mediaTextProgressSize}px Minecraft`
+    context.textBaseline = 'top'
+    context.textAlign = 'right'
+    const progressText = `${formatTimestamp(getInterpolatedPosition())} / ${formatTimestamp(media.duration)}`
+    context.fillText(progressText, canvas.width - settings.mediaTextRightMargin, middle +  + settings.mediaTextDividerMargin)
 
     // Separator
     context.beginPath()
@@ -104,6 +125,7 @@ function processMediaPlaybackListener(event) {
 }
 
 function processMediaTimelineListener(event) {
+    positionLastUpdated = performance.now()
     media.position = event.position
     media.duration = event.duration
 }

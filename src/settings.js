@@ -19,6 +19,7 @@ const settings = {
     mediaTextRightMargin: 20,
     mediaTextTitleSize: 48,
     mediaTextArtistSize: 30,
+    mediaTextProgressSize: 24,
     mediaTextDividerWidth: 3,
     mediaTextDividerMargin: 10,
     mediaTextDividerOffset: 0,
@@ -85,6 +86,9 @@ function applyMediaTextProperties(properties) {
     }
     if (properties.mediatextartistsize) {
         settings.mediaTextArtistSize = properties.mediatextartistsize.value
+    }
+    if (properties.mediatextprogresssize) {
+        settings.mediaTextProgressSize = properties.mediatextprogresssize.value
     }
     if (properties.mediatextdividerwidth) {
         settings.mediaTextDividerWidth = properties.mediatextdividerwidth.value

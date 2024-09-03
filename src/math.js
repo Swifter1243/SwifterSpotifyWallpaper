@@ -19,6 +19,28 @@ function colorToCSS(color) {
     return 'rgb(' + intColor + ')';
 }
 
+function formatTimestamp(seconds) {
+    function makeFixed(number) {
+        if (number >= 10) {
+            return number
+        } else {
+            return `0${number}`
+        }
+    }
+
+    const h = Math.floor(seconds / 3600)
+    const m = Math.floor((seconds % 3600) / 60)
+    const s = Math.floor(seconds % 60)
+
+    if (h > 0) {
+        return `${h}:${makeFixed(m)}:${makeFixed(s)}`
+    } else if (m > 0) {
+        return `${m}:${makeFixed(s)}`
+    } else {
+        return `0:${makeFixed(s)}`
+    }
+}
+
 class Timer {
     lastTime
 

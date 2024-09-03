@@ -19,16 +19,16 @@
 			},
 			"background" : 
 			{
-				"index" : 24,
-				"order" : 124,
+				"index" : 22,
+				"order" : 122,
 				"text" : "Background",
 				"type" : "group",
 				"value" : ""
 			},
 			"backgroundimage" : 
 			{
-				"index" : 25,
-				"order" : 125,
+				"index" : 26,
+				"order" : 126,
 				"text" : "Image",
 				"type" : "file",
 				"value" : ""
@@ -84,10 +84,10 @@
 			"mediatextdividermargin" : 
 			{
 				"fraction" : false,
-				"index" : 22,
+				"index" : 24,
 				"max" : 1000,
 				"min" : 0,
-				"order" : 122,
+				"order" : 124,
 				"text" : "Divider Margin",
 				"type" : "slider",
 				"value" : 20
@@ -95,10 +95,10 @@
 			"mediatextdivideroffset" : 
 			{
 				"fraction" : false,
-				"index" : 23,
+				"index" : 25,
 				"max" : 500,
 				"min" : -500,
-				"order" : 123,
+				"order" : 125,
 				"text" : "Divider Offset",
 				"type" : "slider",
 				"value" : 4
@@ -106,10 +106,10 @@
 			"mediatextdividerwidth" : 
 			{
 				"fraction" : false,
-				"index" : 21,
+				"index" : 23,
 				"max" : 50,
 				"min" : 1,
-				"order" : 121,
+				"order" : 123,
 				"text" : "Divider Width",
 				"type" : "slider",
 				"value" : 5
@@ -124,6 +124,17 @@
 				"text" : "Left Margin",
 				"type" : "slider",
 				"value" : 20
+			},
+			"mediatextprogresssize" : 
+			{
+				"fraction" : false,
+				"index" : 21,
+				"max" : 195,
+				"min" : 1,
+				"order" : 121,
+				"text" : "Progress Size",
+				"type" : "slider",
+				"value" : 24
 			},
 			"mediatextrightmargin" : 
 			{
@@ -280,6 +291,6 @@
 		"supportsaudioprocessing" : true
 	},
 	"title" : "Swifter's Spotify Wallpaper",
-	"type" : "Web",
+	"type" : "web",
 	"version" : 0
 }
