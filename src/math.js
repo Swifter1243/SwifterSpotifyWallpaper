@@ -1,3 +1,5 @@
+const EPSILON = 0.001
+
 function lerp(a, b, t) {
     return (b - a) * t + a
 }
