@@ -23,6 +23,9 @@ function getSpectrogramRect() {
 }
 
 function drawSpectrogram(deltaTime) {
+    if (settings.spectrogramDropShadowEnabled) {
+        drawSpectrogramDropShadow()
+    }
     drawSpectrogramCurve(deltaTime)
 }
 
@@ -36,6 +39,21 @@ function getTargetScalar() {
 
 const currentAudio = []
 let currentScalar = 1
+
+function drawSpectrogramDropShadow() {
+    const intColor = settings.spectrogramDropShadowColorRaw.split(' ').map(c => Math.ceil(c * 255));
+    const COLOR = `rgb(${intColor},${settings.spectrogramDropShadowAmount})`
+
+    function positionToHeight(y) {
+        return y / canvas.height
+    }
+
+    const gradientBottom = context.createLinearGradient(0, 0, 0, canvas.height)
+    gradientBottom.addColorStop(positionToHeight(getSpectrogramTop()), '#0000')
+    gradientBottom.addColorStop(1, COLOR)
+    context.fillStyle = gradientBottom
+    context.fillRect(0, 0, canvas.width, canvas.height)
+}
 
 function drawSpectrogramCurve(deltaTime) {
     const points = []

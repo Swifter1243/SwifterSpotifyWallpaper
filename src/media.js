@@ -127,12 +127,31 @@ function getMediaDividerFullMargin() {
 function drawMedia(deltaTime) {
     updateSmoothedPosition(deltaTime)
 
+    if (settings.mediaTextDropShadowEnabled) {
+        drawMediaDropShadow()
+    }
     drawThumbnailBorder()
     drawMediaTextTitle()
     drawMediaTextArtist()
     drawMediaProgressText()
     drawMediaSeparator()
     drawMediaProgressBar()
+}
+
+function drawMediaDropShadow() {
+    const intColor = settings.mediaTextDropShadowColorRaw.split(' ').map(c => Math.ceil(c * 255));
+    const COLOR = `rgb(${intColor},${settings.mediaTextDropShadowAmount * getHideAnimationPosition()})`
+
+    function positionToHeight(y) {
+        return y / canvas.height
+    }
+
+    const gradientTop = context.createLinearGradient(0, 0, 0, canvas.height)
+    gradientTop.addColorStop(positionToHeight(settings.thumbnailTopMargin), '#0000')
+    gradientTop.addColorStop(positionToHeight(getMediaTextMiddle()), COLOR)
+    gradientTop.addColorStop(positionToHeight(settings.thumbnailTopMargin + getThumbnailTotalSize()), '#0000')
+    context.fillStyle = gradientTop
+    context.fillRect(settings.thumbnailLeftMargin, 0, canvas.width, canvas.height)
 }
 
 function drawThumbnailBorder() {

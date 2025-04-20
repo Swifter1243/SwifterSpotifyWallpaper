@@ -1,6 +1,9 @@
 const settings = {
     // Spectrogram
     spectrogramColor: '#FFF',
+    spectrogramDropShadowEnabled: true,
+    spectrogramDropShadowColorRaw: '0 0 0',
+    spectrogramDropShadowAmount: 0.5,
     spectrogramSpacingFromEdge: 50,
     spectrogramSpacingFromBottom: 50,
     spectrogramHeight: 300,
@@ -15,6 +18,9 @@ const settings = {
 
     // Media Text
     mediaTextColor: '#FFF',
+    mediaTextDropShadowEnabled: true,
+    mediaTextDropShadowColorRaw: '0 0 0',
+    mediaTextDropShadowAmount: 0.5,
     mediaTextLeftMargin: 20,
     mediaTextRightMargin: 20,
     mediaTextTitleSize: 48,
@@ -40,6 +46,15 @@ function applyProperties(properties) {
 function applySpectrogramProperties(properties) {
     if (properties.spectrogramcolor) {
         settings.spectrogramColor = colorToCSS(properties.spectrogramcolor.value)
+    }
+    if (properties.spectrogramdropshadowenabled) {
+        settings.spectrogramDropShadowEnabled = properties.spectrogramdropshadowenabled.value
+    }
+    if (properties.spectrogramdropshadowcolor) {
+        settings.spectrogramDropShadowColorRaw = properties.spectrogramdropshadowcolor.value
+    }
+    if (properties.spectrogramdropshadowamount) {
+        settings.spectrogramDropShadowAmount = properties.spectrogramdropshadowamount.value
     }
     if (properties.spectrogramheight) {
         settings.spectrogramHeight = properties.spectrogramheight.value
@@ -74,6 +89,15 @@ function applyThumbnailProperties(properties) {
 function applyMediaTextProperties(properties) {
     if (properties.mediatextcolor) {
         settings.mediaTextColor = colorToCSS(properties.mediatextcolor.value)
+    }
+    if (properties.mediatextdropshadowenabled) {
+        settings.mediaTextDropShadowEnabled = properties.mediatextdropshadowenabled.value
+    }
+    if (properties.mediatextdropshadowcolor) {
+        settings.mediaTextDropShadowColorRaw = properties.mediatextdropshadowcolor.value
+    }
+    if (properties.mediatextdropshadowamount) {
+        settings.mediaTextDropShadowAmount = properties.mediatextdropshadowamount.value
     }
     if (properties.mediatextleftmargin) {
         settings.mediaTextLeftMargin = properties.mediatextleftmargin.value
