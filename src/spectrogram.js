@@ -27,7 +27,7 @@ function drawSpectrogram(deltaTime) {
 }
 
 function getTargetScalar() {
-    if (targetAverageVolume > 0) {
+    if (targetAverageVolume > EPSILON) {
         return 1.0 / targetAverageVolume
     } else {
         return 0
