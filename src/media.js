@@ -202,15 +202,18 @@ function drawMediaProgressText() {
 
 function drawMediaSeparator() {
     context.beginPath()
+
+    const right = lerp(getMediaTextLeft(), getMediaTextRight(), getHideAnimationPosition())
+
     context.moveTo(getMediaTextLeft(), getMediaTextMiddle())
-    context.lineTo(getMediaTextRight(), getMediaTextMiddle())
+    context.lineTo(right, getMediaTextMiddle())
     context.strokeStyle = '#0006'
     context.lineWidth = settings.mediaTextDividerWidth
     context.stroke()
 }
 
 function drawMediaProgressBar() {
-    const progressColor = isPrimaryColorBright() ? '#FFF' : media.primaryColor
+    const progressColor = isPrimaryColorBright() ? settings.mediaTextColor : media.primaryColor
     let progressAmount = smoothedPosition / media.duration
     progressAmount *= getHideAnimationPosition()
     const progressEnd = lerp(getMediaTextLeft(), getMediaTextRight(), progressAmount)
